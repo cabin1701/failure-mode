@@ -124,4 +124,26 @@ const fmtDate = (d: Date) =>
   .specimen-body :global(strong) {
     color: var(--color-primary);
   }
+  .specimen-body :global(table) {
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    width: 100%;
+    font-size: 0.95rem;
+  }
+  .specimen-body :global(th),
+  .specimen-body :global(td) {
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    padding: 0.55rem 0.85rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  .specimen-body :global(th) {
+    background: rgba(0, 0, 0, 0.04);
+    font-weight: 600;
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+  }
+  .specimen-body :global(tr:nth-child(even) td) {
+    background: rgba(0, 0, 0, 0.02);
+  }
 </style>
