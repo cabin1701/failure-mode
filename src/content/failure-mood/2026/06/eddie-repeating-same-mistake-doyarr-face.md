@@ -253,7 +253,7 @@ _[ツール結果（省略：元ファイル参照）]_
 
 **やったこと**：
 
-1. `cabin1701/.claude/skills/session-log-md.skill`（船長 owned、ZIP 形式）の中の `SKILL.md` を展開
+1. `<skill-source-path>`（船長 owned、ZIP 形式）の中の `SKILL.md` を展開
 2. バグ行を修正：`if role == "user"...` → `if started and role == "user"...`
 3. 元ファイルを `session-log-md.skill.bak.2026-06-20` にバックアップ
 4. 修正版を再 zip して上書き
@@ -269,7 +269,7 @@ _[ツール結果（省略：元ファイル参照）]_
 
 昨日も同じことを catch されたはず。それを引き継ぎに残してなかった。次の Eddie への警告として明示しとく：
 
-> **「anthropic-skills:」prefix のスキルでも、source は `cabin1701/.claude/skills/*.skill` にある。ZIP 形式。本物を直すならそこを unzip して edit して再 zip。Anthropic のじゃない。**
+> **「anthropic-skills:」prefix のスキルでも、source は `<skill-source-path>` にある。ZIP 形式。本物を直すならそこを unzip して edit して再 zip。Anthropic のじゃない。**
 
 積み上げに追記する。
 
