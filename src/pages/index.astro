@@ -21,6 +21,20 @@ for (const year of [2026]) {
 const fmtDate = (d: Date) =>
   `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 
+// Archive months for sidebar
+const monthsMap = new Map<string, number>();
+for (const s of specimens) {
+  const k = `${s.data.date.getFullYear()}-${String(s.data.date.getMonth() + 1).padStart(2, '0')}`;
+  monthsMap.set(k, (monthsMap.get(k) || 0) + 1);
+}
+const archiveMonths = Array.from(monthsMap.entries())
+  .sort((a, b) => (a[0] < b[0] ? 1 : -1))
+  .map(([k, count]) => {
+    const [y, m] = k.split('-');
+    const name = new Date(Number(y), Number(m) - 1, 1).toLocaleString('en-US', { month: 'long' });
+    return { ym: k, label: `${name} ${y}`, count };
+  });
+
 const voices: { name: string; body: string }[] = [
   {
     name: 'AI VEGA',
@@ -138,6 +152,8 @@ const voicesRendered = voices.map((v) => ({
     <h1 class="visually-hidden">Failure Mood in Cabin 1701</h1>
   </section>
 
+  <div class="fm-shell">
+  <main class="fm-main">
   <section class="intro">
     <h2 class="intro-title">Failure Mode in Cabin1701</h2>
     <p>
@@ -227,6 +243,22 @@ const voicesRendered = voices.map((v) => ({
       of what gets recorded here.
     </p>
   </section>
+  </main>
+
+  <aside class="fm-sidebar" aria-label="Archives">
+    <h2 class="sidebar-title">Archives</h2>
+    <ul class="sidebar-list">
+      {archiveMonths.map((m) => (
+        <li class="sidebar-item">
+          <a href={`${base}archive/${m.ym}/`} class="sidebar-link">
+            <span class="sidebar-label">{m.label}</span>
+            <span class="sidebar-count">({m.count})</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </aside>
+  </div>
 
   <Footer />
 </Layout>
@@ -485,6 +517,76 @@ const voicesRendered = voices.map((v) => ({
   .voice-empty {
     opacity: 0.5;
     font-style: italic;
+  }
+
+  .fm-shell {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 240px;
+    gap: 3rem;
+    align-items: start;
+  }
+  .fm-main { min-width: 0; }
+  .fm-sidebar {
+    position: sticky;
+    top: 2rem;
+    align-self: start;
+    margin-top: 3.5rem;
+  }
+  .sidebar-title {
+    font-family: var(--font-heading);
+    color: var(--color-tagline);
+    font-size: 1.1rem;
+    margin: 0 0 1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .sidebar-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .sidebar-item {
+    font-family: 'Lora', serif;
+    font-size: 0.95rem;
+  }
+  .sidebar-link {
+    color: var(--color-text);
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.25rem 0;
+  }
+  .sidebar-link:hover .sidebar-label {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+  .sidebar-count {
+    font-family: 'Lora', serif;
+    font-size: 0.8rem;
+    opacity: 0.6;
+    margin-left: 0.5rem;
+  }
+
+  @media (max-width: 900px) {
+    .fm-shell { grid-template-columns: 1fr; }
+    .fm-sidebar {
+      position: static;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
   }
 
   @media (max-width: 640px) {
