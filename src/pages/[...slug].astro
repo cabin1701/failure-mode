@@ -8,51 +8,146 @@ export async function getStaticPaths() {
   const specimens = await getCollection('failureMood');
   return specimens.map((spec) => ({
     params: { slug: spec.id },
-    props: { spec },
+    props: { spec, all: specimens },
   }));
 }
 
-const { spec } = Astro.props;
+const { spec, all } = Astro.props;
 const { Content } = await render(spec);
 const base = import.meta.env.BASE_URL;
 
 const fmtDate = (d: Date) =>
   `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+
+// Archive months for sidebar
+const currentYm = `${spec.data.date.getFullYear()}-${String(spec.data.date.getMonth() + 1).padStart(2, '0')}`;
+const monthsMap = new Map<string, number>();
+for (const s of all) {
+  const k = `${s.data.date.getFullYear()}-${String(s.data.date.getMonth() + 1).padStart(2, '0')}`;
+  monthsMap.set(k, (monthsMap.get(k) || 0) + 1);
+}
+const months = Array.from(monthsMap.entries())
+  .sort((a, b) => (a[0] < b[0] ? 1 : -1))
+  .map(([k, count]) => {
+    const [y, m] = k.split('-');
+    const name = new Date(Number(y), Number(m) - 1, 1).toLocaleString('en-US', { month: 'long' });
+    return { ym: k, label: `${name} ${y}`, count, isCurrent: k === currentYm };
+  });
 ---
 
 <Layout title={`${spec.data.title} — Failure Mood`} lang="en">
   <Header lang="en" />
 
-  <article class="specimen">
-    <p class="specimen-breadcrumb">
-      <a href={base}>← Back to Failure Mood</a>
-    </p>
-
-    <header class="specimen-header">
-      <h1 class="specimen-title">{spec.data.title}</h1>
-      <p class="specimen-meta">
-        <time datetime={spec.data.date.toISOString().slice(0, 10)}>{fmtDate(spec.data.date)}</time>
-        <span class="sep">•</span>
-        <span>AI {spec.data.crew}</span>
-        <span class="sep">•</span>
-        <span>{spec.data.model}</span>
+  <div class="specimen-shell">
+    <article class="specimen">
+      <p class="specimen-breadcrumb">
+        <a href={base}>← Back to Failure Mood</a>
       </p>
-      {spec.data.context && <p class="specimen-context">{spec.data.context}</p>}
-    </header>
 
-    <div class="specimen-body">
-      <Content />
-    </div>
-  </article>
+      <header class="specimen-header">
+        <h1 class="specimen-title">{spec.data.title}</h1>
+        <p class="specimen-meta">
+          <time datetime={spec.data.date.toISOString().slice(0, 10)}>{fmtDate(spec.data.date)}</time>
+          <span class="sep">•</span>
+          <span>AI {spec.data.crew}</span>
+          <span class="sep">•</span>
+          <span>{spec.data.model}</span>
+        </p>
+        {spec.data.context && <p class="specimen-context">{spec.data.context}</p>}
+      </header>
+
+      <div class="specimen-body">
+        <Content />
+      </div>
+    </article>
+
+    <aside class="specimen-sidebar" aria-label="Archives">
+      <h2 class="sidebar-title">Archives</h2>
+      <ul class="sidebar-list">
+        {months.map((m) => (
+          <li class:list={['sidebar-item', { 'is-current': m.isCurrent }]}>
+            <a href={`${base}archive/${m.ym}/`} class="sidebar-link">
+              <span class="sidebar-label">{m.label}</span>
+              <span class="sidebar-count">({m.count})</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </aside>
+  </div>
 
   <Footer />
 </Layout>
 
 <style>
-  .specimen {
-    max-width: 820px;
+  .specimen-shell {
+    max-width: 1100px;
     margin: 2.5rem auto 4rem;
     padding: 0 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 240px;
+    gap: 3rem;
+  }
+  .specimen {
+    min-width: 0;
+  }
+  .specimen-sidebar {
+    position: sticky;
+    top: 2rem;
+    align-self: start;
+  }
+  .sidebar-title {
+    font-family: var(--font-heading);
+    color: var(--color-tagline);
+    font-size: 1.1rem;
+    margin: 0 0 1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .sidebar-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .sidebar-item {
+    font-family: 'Lora', serif;
+    font-size: 0.95rem;
+  }
+  .sidebar-link {
+    color: var(--color-text);
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.25rem 0;
+  }
+  .sidebar-link:hover .sidebar-label {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+  .sidebar-item.is-current .sidebar-label {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+  .sidebar-count {
+    font-family: 'Lora', serif;
+    font-size: 0.8rem;
+    opacity: 0.6;
+    margin-left: 0.5rem;
+  }
+  @media (max-width: 768px) {
+    .specimen-shell {
+      grid-template-columns: 1fr;
+    }
+    .specimen-sidebar {
+      position: static;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      padding-top: 1.5rem;
+    }
   }
   .specimen-breadcrumb {
     margin: 0 0 1.5rem;

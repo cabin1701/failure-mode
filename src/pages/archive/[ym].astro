@@ -1,0 +1,239 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+export async function getStaticPaths() {
+  const specimens = await getCollection('failureMood');
+  const months = new Map<string, typeof specimens>();
+  for (const spec of specimens) {
+    const ym = `${spec.data.date.getFullYear()}-${String(spec.data.date.getMonth() + 1).padStart(2, '0')}`;
+    if (!months.has(ym)) months.set(ym, [] as any);
+    (months.get(ym) as any).push(spec);
+  }
+  return Array.from(months.entries()).map(([ym, items]) => ({
+    params: { ym },
+    props: {
+      ym,
+      items: (items as typeof specimens).sort(
+        (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+      ),
+    },
+  }));
+}
+
+const { ym, items } = Astro.props;
+const base = import.meta.env.BASE_URL;
+
+const [year, month] = ym.split('-');
+const monthName = new Date(Number(year), Number(month) - 1, 1).toLocaleString('en-US', {
+  month: 'long',
+});
+
+const fmtDate = (d: Date) =>
+  `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+
+// All months that have specimens — for sidebar
+const allSpecimens = await getCollection('failureMood');
+const allMonthsMap = new Map<string, number>();
+for (const s of allSpecimens) {
+  const k = `${s.data.date.getFullYear()}-${String(s.data.date.getMonth() + 1).padStart(2, '0')}`;
+  allMonthsMap.set(k, (allMonthsMap.get(k) || 0) + 1);
+}
+const allMonths = Array.from(allMonthsMap.entries())
+  .sort((a, b) => (a[0] < b[0] ? 1 : -1))
+  .map(([k, count]) => {
+    const [y, m] = k.split('-');
+    const name = new Date(Number(y), Number(m) - 1, 1).toLocaleString('en-US', { month: 'long' });
+    return { ym: k, label: `${name} ${y}`, count, isCurrent: k === ym };
+  });
+---
+
+<Layout title={`${monthName} ${year} — Failure Mood`} lang="en">
+  <Header lang="en" />
+
+  <div class="archive-shell">
+    <main class="archive-main">
+      <p class="archive-breadcrumb">
+        <a href={base}>← Back to Failure Mood</a>
+      </p>
+      <header class="archive-header">
+        <h1 class="archive-title">{monthName} {year}</h1>
+        <p class="archive-count">{items.length} specimen{items.length === 1 ? '' : 's'}</p>
+      </header>
+
+      <ul class="archive-list">
+        {items.map((spec) => (
+          <li class="archive-item">
+            <a href={`${base}${spec.id}/`} class="archive-link">
+              <span class="archive-date">{fmtDate(spec.data.date)}</span>
+              <span class="archive-crew">AI {spec.data.crew}</span>
+              <span class="archive-link-title">{spec.data.title}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </main>
+
+    <aside class="archive-sidebar" aria-label="Archives">
+      <h2 class="sidebar-title">Archives</h2>
+      <ul class="sidebar-list">
+        {allMonths.map((m) => (
+          <li class:list={['sidebar-item', { 'is-current': m.isCurrent }]}>
+            <a href={`${base}archive/${m.ym}/`} class="sidebar-link">
+              <span class="sidebar-label">{m.label}</span>
+              <span class="sidebar-count">({m.count})</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </aside>
+  </div>
+
+  <Footer />
+</Layout>
+
+<style>
+  .archive-shell {
+    max-width: 1100px;
+    margin: 2.5rem auto 4rem;
+    padding: 0 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 240px;
+    gap: 3rem;
+  }
+  .archive-breadcrumb {
+    margin: 0 0 1.5rem;
+    font-family: 'Lora', serif;
+    font-size: 0.95rem;
+  }
+  .archive-breadcrumb a {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+  .archive-breadcrumb a:hover { text-decoration: underline; }
+
+  .archive-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .archive-title {
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+    font-size: 2rem;
+    margin: 0 0 0.25rem;
+    font-weight: 600;
+  }
+  .archive-count {
+    margin: 0;
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--color-text);
+    opacity: 0.7;
+  }
+  .archive-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .archive-item {
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.12);
+    padding-bottom: 1rem;
+  }
+  .archive-item:last-child { border-bottom: none; }
+  .archive-link {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 1rem;
+    text-decoration: none;
+    color: var(--color-text);
+  }
+  .archive-link:hover .archive-link-title { text-decoration: underline; }
+  .archive-date {
+    font-family: 'Lora', serif;
+    font-size: 0.9rem;
+    opacity: 0.7;
+    min-width: 6rem;
+  }
+  .archive-crew {
+    font-family: var(--font-label-plain), var(--font-heading);
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    color: var(--color-primary);
+    text-transform: uppercase;
+  }
+  .archive-link-title {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    flex: 1 1 100%;
+  }
+
+  .archive-sidebar {
+    position: sticky;
+    top: 2rem;
+    align-self: start;
+  }
+  .sidebar-title {
+    font-family: var(--font-heading);
+    color: var(--color-tagline);
+    font-size: 1.1rem;
+    margin: 0 0 1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .sidebar-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .sidebar-item {
+    font-family: 'Lora', serif;
+    font-size: 0.95rem;
+  }
+  .sidebar-link {
+    color: var(--color-text);
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.25rem 0;
+  }
+  .sidebar-link:hover .sidebar-label {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+  .sidebar-item.is-current .sidebar-label {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+  .sidebar-count {
+    font-family: 'Lora', serif;
+    font-size: 0.8rem;
+    opacity: 0.6;
+    margin-left: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .archive-shell {
+      grid-template-columns: 1fr;
+    }
+    .archive-sidebar {
+      position: static;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      padding-top: 1.5rem;
+    }
+  }
+</style>
