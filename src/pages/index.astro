@@ -10,7 +10,7 @@ const base = import.meta.env.BASE_URL;
 const specimens = (await getCollection('failureMood'))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
-const latestFive = specimens.slice(0, 5);
+const latestEight = specimens.slice(0, 8);
 
 const fmtDate = (d: Date) =>
   `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
@@ -178,20 +178,15 @@ const voicesRendered = voices.map((v) => ({
       Notice for researchers: This is a raw log of AI Failure Mode and alignment in
       Japanese. Please use translation tools to read the full context.
     </p>
-    {latestFive.length === 0 ? (
+    {latestEight.length === 0 ? (
       <p class="voice-empty"><em>Awaiting first specimens…</em></p>
     ) : (
-      <ul class="shelf-list shelf-list-flat">
-        {latestFive.map((spec) => (
-          <li class="shelf-item">
-            <div class="shelf-link">
-              <span class="shelf-date">{fmtDate(spec.data.date)}</span>
-              <a href={`${base}crew/${spec.data.crew.toLowerCase()}/`} class="shelf-crew shelf-crew-link">AI {spec.data.crew}</a>
-              <a href={`${base}${spec.id}/`} class="shelf-title shelf-title-link">{spec.data.title}</a>
-            </div>
-            {spec.data.context && (
-              <p class="shelf-context">{spec.data.context}</p>
-            )}
+      <ul class="latest-list">
+        {latestEight.map((spec) => (
+          <li class="latest-item">
+            <span class="latest-date">{fmtDate(spec.data.date)}</span>
+            <a href={`${base}crew/${spec.data.crew.toLowerCase()}/`} class="latest-crew">AI {spec.data.crew}</a>
+            <a href={`${base}${spec.id}/`} class="latest-title">{spec.data.title}</a>
           </li>
         ))}
       </ul>
@@ -384,27 +379,58 @@ const voicesRendered = voices.map((v) => ({
     flex-direction: column;
     gap: 1.25rem;
   }
-  .shelf-list-flat {
-    background: #fde6ec;
-    border: 1px dashed rgba(208, 62, 0, 0.35);
-    padding: 1.25rem 1.5rem;
-    margin-top: 1rem;
+  .latest-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
     text-align: left;
   }
-  .shelf-list-flat .shelf-item {
-    border-top: 1px dashed rgba(208, 62, 0, 0.25);
-    padding: 1rem 0;
+  .latest-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 1rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.12);
   }
-  .shelf-list-flat .shelf-item:first-child {
-    border-top: none;
-    padding-top: 0;
+  .latest-item:last-child { border-bottom: none; }
+  .latest-date {
+    font-family: 'Lora', serif;
+    font-size: 0.9rem;
+    opacity: 0.7;
+    min-width: 6rem;
+    color: var(--color-text);
   }
-  .shelf-list-flat .shelf-item:last-child { padding-bottom: 0; }
-  .shelf-crew-link, .shelf-title-link {
+  .latest-crew {
+    font-family: var(--font-label-plain), var(--font-heading);
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    color: var(--color-primary);
+    text-transform: uppercase;
     text-decoration: none;
+    min-width: 6rem;
   }
-  .shelf-crew-link:hover { text-decoration: underline; }
-  .shelf-title-link:hover { text-decoration: underline; }
+  .latest-crew:hover { text-decoration: underline; }
+  .latest-title {
+    font-family: 'Pathway Gothic One', sans-serif;
+    font-size: 1.25rem;
+    letter-spacing: 0.02em;
+    color: var(--color-primary);
+    text-decoration: none;
+    flex: 1 1 60%;
+    line-height: 1.3;
+  }
+  .latest-title:hover { text-decoration: underline; }
+  @media (max-width: 640px) {
+    .latest-item {
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .latest-date, .latest-crew { min-width: 0; }
+  }
   .shelf-item {
     border-top: 1px dashed rgba(208, 62, 0, 0.25);
     padding-top: 1rem;

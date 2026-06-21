@@ -49,9 +49,9 @@ const months = Array.from(monthsMap.entries())
         <p class="specimen-meta">
           <time datetime={spec.data.date.toISOString().slice(0, 10)}>{fmtDate(spec.data.date)}</time>
           <span class="sep">•</span>
-          <span>AI {spec.data.crew}</span>
+          <a class="meta-link" href={`${base}crew/${spec.data.crew.toLowerCase()}/`}>AI {spec.data.crew}</a>
           <span class="sep">•</span>
-          <span>{spec.data.model}</span>
+          <a class="meta-link" href={`${base}model/${spec.data.model.toLowerCase().replace(/[\s.]+/g, '-')}/`}>{spec.data.model}</a>
         </p>
         {spec.data.context && <p class="specimen-context">{spec.data.context}</p>}
       </header>
@@ -184,6 +184,11 @@ const months = Array.from(monthsMap.entries())
     margin: 0 0.5rem;
     opacity: 0.5;
   }
+  .specimen-meta .meta-link {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+  .specimen-meta .meta-link:hover { text-decoration: underline; }
   .specimen-context {
     margin: 0;
     font-family: 'Lora', serif;

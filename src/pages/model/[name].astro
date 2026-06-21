@@ -1,0 +1,289 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+export async function getStaticPaths() {
+  const slugify = (s: string) => s.toLowerCase().replace(/[\s.]+/g, '-');
+  const specimens = await getCollection('failureMood');
+  const byModel = new Map<string, typeof specimens>();
+  for (const s of specimens) {
+    const key = slugify(s.data.model);
+    if (!byModel.has(key)) byModel.set(key, [] as any);
+    (byModel.get(key) as any).push(s);
+  }
+  return Array.from(byModel.entries()).map(([key, items]) => ({
+    params: { name: key },
+    props: {
+      displayName: (items as typeof specimens)[0].data.model,
+      items: (items as typeof specimens).sort(
+        (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+      ),
+    },
+  }));
+}
+
+const { displayName, items } = Astro.props;
+const base = import.meta.env.BASE_URL;
+
+const fmtDate = (d: Date) =>
+  `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+
+// Archives sidebar (months)
+const allSpecimens = await getCollection('failureMood');
+const monthsMap = new Map<string, number>();
+for (const s of allSpecimens) {
+  const k = `${s.data.date.getFullYear()}-${String(s.data.date.getMonth() + 1).padStart(2, '0')}`;
+  monthsMap.set(k, (monthsMap.get(k) || 0) + 1);
+}
+const archiveMonths = Array.from(monthsMap.entries())
+  .sort((a, b) => (a[0] < b[0] ? 1 : -1))
+  .map(([k, count]) => {
+    const [y, m] = k.split('-');
+    const mn = new Date(Number(y), Number(m) - 1, 1).toLocaleString('en-US', { month: 'long' });
+    return { ym: k, label: `${mn} ${y}`, count };
+  });
+
+const PAGE_SIZE = 10;
+---
+
+<Layout title={`${displayName} — Failure Mood`} lang="en">
+  <Header lang="en" />
+
+  <div class="model-shell">
+    <main class="model-main">
+      <p class="model-breadcrumb">
+        <a href={base}>← Back to Failure Mood</a>
+      </p>
+      <header class="model-header">
+        <h1 class="model-title">{displayName}</h1>
+        <p class="model-count">{items.length} specimen{items.length === 1 ? '' : 's'}</p>
+      </header>
+
+      <ul class="model-list" id="model-list" data-page-size={PAGE_SIZE}>
+        {items.map((spec) => (
+          <li class="model-item">
+            <a href={`${base}${spec.id}/`} class="model-link">
+              <span class="model-date">{fmtDate(spec.data.date)}</span>
+              <span class="model-crew">AI {spec.data.crew}</span>
+              <span class="model-link-title">{spec.data.title}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <nav class="pager" id="pager" aria-label="Specimens navigation" hidden>
+        <a class="pager-link pager-prev" id="pager-prev" href="#" rel="prev">← Newer</a>
+        <span class="pager-indicator" id="pager-indicator"></span>
+        <a class="pager-link pager-next" id="pager-next" href="#" rel="next">Older →</a>
+      </nav>
+    </main>
+
+    <aside class="model-sidebar" aria-label="Archives">
+      <h2 class="sidebar-title">Archives</h2>
+      <ul class="sidebar-list">
+        {archiveMonths.map((m) => (
+          <li class="sidebar-item">
+            <a href={`${base}archive/${m.ym}/`} class="sidebar-link">
+              <span class="sidebar-label">{m.label}</span>
+              <span class="sidebar-count">({m.count})</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </aside>
+  </div>
+
+  <script is:inline>
+    (function () {
+      const list = document.getElementById('model-list');
+      if (!list) return;
+      const pageSize = parseInt(list.dataset.pageSize || '10', 10);
+      const params = new URLSearchParams(location.search);
+      let page = parseInt(params.get('page') || '1', 10);
+      if (!(page > 0)) page = 1;
+      const items = Array.from(list.querySelectorAll('.model-item'));
+      const total = items.length;
+      const totalPages = Math.max(1, Math.ceil(total / pageSize));
+      if (page > totalPages) page = totalPages;
+      const start = (page - 1) * pageSize;
+      const end = start + pageSize;
+      items.forEach((it, i) => { it.hidden = !(i >= start && i < end); });
+
+      const pager = document.getElementById('pager');
+      const prev = document.getElementById('pager-prev');
+      const next = document.getElementById('pager-next');
+      const indicator = document.getElementById('pager-indicator');
+      if (!pager || !prev || !next || !indicator) return;
+      if (totalPages <= 1) {
+        pager.hidden = true;
+        return;
+      }
+      pager.hidden = false;
+      indicator.textContent = 'Page ' + page + ' of ' + totalPages;
+      const buildUrl = (p) => {
+        const np = new URLSearchParams(params);
+        if (p <= 1) np.delete('page'); else np.set('page', String(p));
+        const qs = np.toString();
+        return location.pathname + (qs ? '?' + qs : '');
+      };
+      if (page > 1) {
+        prev.href = buildUrl(page - 1);
+        prev.classList.remove('is-disabled');
+      } else {
+        prev.removeAttribute('href');
+        prev.classList.add('is-disabled');
+      }
+      if (page < totalPages) {
+        next.href = buildUrl(page + 1);
+        next.classList.remove('is-disabled');
+      } else {
+        next.removeAttribute('href');
+        next.classList.add('is-disabled');
+      }
+    })();
+  </script>
+
+  <Footer />
+</Layout>
+
+<style>
+  .model-shell {
+    max-width: 1100px;
+    margin: 2.5rem auto 4rem;
+    padding: 0 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 240px;
+    gap: 3rem;
+  }
+  .model-breadcrumb {
+    margin: 0 0 1.5rem;
+    font-family: 'Lora', serif;
+    font-size: 0.95rem;
+  }
+  .model-breadcrumb a { color: var(--color-primary); text-decoration: none; }
+  .model-breadcrumb a:hover { text-decoration: underline; }
+  .model-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .model-title {
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+    font-size: 2rem;
+    margin: 0 0 0.25rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .model-count {
+    margin: 0;
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--color-text);
+    opacity: 0.7;
+  }
+  .model-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .model-item {
+    padding: 0.85rem 0;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.12);
+  }
+  .model-item:last-child { border-bottom: none; }
+  .model-item[hidden] { display: none; }
+  .model-link {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 1rem;
+    text-decoration: none;
+    color: var(--color-text);
+  }
+  .model-link:hover .model-link-title { text-decoration: underline; }
+  .model-date {
+    font-family: 'Lora', serif;
+    font-size: 0.9rem;
+    opacity: 0.7;
+    min-width: 6rem;
+  }
+  .model-crew {
+    font-family: var(--font-label-plain), var(--font-heading);
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    min-width: 6rem;
+  }
+  .model-link-title {
+    font-family: 'Pathway Gothic One', sans-serif;
+    font-size: 1.25rem;
+    letter-spacing: 0.02em;
+    color: var(--color-primary);
+    flex: 1 1 60%;
+    line-height: 1.3;
+  }
+
+  .pager {
+    margin-top: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+  }
+  .pager[hidden] { display: none; }
+  .pager-link {
+    color: var(--color-primary);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--color-primary);
+    border-radius: 999px;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .pager-link:hover { background: var(--color-primary); color: var(--color-bg); }
+  .pager-link.is-disabled { opacity: 0.3; pointer-events: none; }
+  .pager-indicator {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--color-tagline);
+  }
+
+  .model-sidebar { position: sticky; top: 2rem; align-self: start; }
+  .sidebar-title {
+    font-family: var(--font-heading);
+    color: var(--color-tagline);
+    font-size: 1.1rem;
+    margin: 0 0 1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .sidebar-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+  .sidebar-item { font-family: 'Lora', serif; font-size: 0.95rem; }
+  .sidebar-link {
+    color: var(--color-text);
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.25rem 0;
+  }
+  .sidebar-link:hover .sidebar-label { color: var(--color-primary); text-decoration: underline; }
+  .sidebar-count { font-family: 'Lora', serif; font-size: 0.8rem; opacity: 0.6; margin-left: 0.5rem; }
+
+  @media (max-width: 768px) {
+    .model-shell { grid-template-columns: 1fr; }
+    .model-sidebar { position: static; border-top: 1px solid rgba(0, 0, 0, 0.1); padding-top: 1.5rem; }
+  }
+</style>
