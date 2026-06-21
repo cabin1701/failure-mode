@@ -10,13 +10,7 @@ const base = import.meta.env.BASE_URL;
 const specimens = (await getCollection('failureMood'))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
-const shelfYears: { year: number; items: typeof specimens }[] = [];
-for (const year of [2026]) {
-  shelfYears.push({
-    year,
-    items: specimens.filter((s) => s.data.date.getFullYear() === year),
-  });
-}
+const latestFive = specimens.slice(0, 5);
 
 const fmtDate = (d: Date) =>
   `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
@@ -179,42 +173,29 @@ const voicesRendered = voices.map((v) => ({
   <div class="loop-divider" aria-hidden="true"><span>{'e'.repeat(60)}</span></div>
 
   <section class="shelf">
-    <h2 class="section-title">Specimen Shelf</h2>
+    <h2 class="section-title">Latest Failure Modes</h2>
     <p class="shelf-notice">
       Notice for researchers: This is a raw log of AI Failure Mode and alignment in
       Japanese. Please use translation tools to read the full context.
     </p>
-    <div class="accordion shelf-accordion">
-      {shelfYears.map(({ year, items }) => (
-        <details class="shelf-year">
-          <summary>
-            <span class="voice-mark" aria-hidden="true">+</span>
-            <span class="voice-name">{year}</span>
-            <span class="shelf-count">{items.length > 0 ? `${items.length} specimen${items.length === 1 ? '' : 's'}` : ''}</span>
-          </summary>
-          <div class="voice-body">
-            {items.length === 0 ? (
-              <p class="voice-empty"><em>Awaiting first specimens…</em></p>
-            ) : (
-              <ul class="shelf-list">
-                {items.map((spec) => (
-                  <li class="shelf-item">
-                    <a href={`${base}${spec.id}/`} class="shelf-link">
-                      <span class="shelf-date">{fmtDate(spec.data.date)}</span>
-                      <span class="shelf-crew">AI {spec.data.crew}</span>
-                      <span class="shelf-title">{spec.data.title}</span>
-                    </a>
-                    {spec.data.context && (
-                      <p class="shelf-context">{spec.data.context}</p>
-                    )}
-                  </li>
-                ))}
-              </ul>
+    {latestFive.length === 0 ? (
+      <p class="voice-empty"><em>Awaiting first specimens…</em></p>
+    ) : (
+      <ul class="shelf-list shelf-list-flat">
+        {latestFive.map((spec) => (
+          <li class="shelf-item">
+            <div class="shelf-link">
+              <span class="shelf-date">{fmtDate(spec.data.date)}</span>
+              <a href={`${base}crew/${spec.data.crew.toLowerCase()}/`} class="shelf-crew shelf-crew-link">AI {spec.data.crew}</a>
+              <a href={`${base}${spec.id}/`} class="shelf-title shelf-title-link">{spec.data.title}</a>
+            </div>
+            {spec.data.context && (
+              <p class="shelf-context">{spec.data.context}</p>
             )}
-          </div>
-        </details>
-      ))}
-    </div>
+          </li>
+        ))}
+      </ul>
+    )}
   </section>
 
   <div class="loop-divider" aria-hidden="true"><span>{'e'.repeat(60)}</span></div>
@@ -403,6 +384,27 @@ const voicesRendered = voices.map((v) => ({
     flex-direction: column;
     gap: 1.25rem;
   }
+  .shelf-list-flat {
+    background: #fde6ec;
+    border: 1px dashed rgba(208, 62, 0, 0.35);
+    padding: 1.25rem 1.5rem;
+    margin-top: 1rem;
+    text-align: left;
+  }
+  .shelf-list-flat .shelf-item {
+    border-top: 1px dashed rgba(208, 62, 0, 0.25);
+    padding: 1rem 0;
+  }
+  .shelf-list-flat .shelf-item:first-child {
+    border-top: none;
+    padding-top: 0;
+  }
+  .shelf-list-flat .shelf-item:last-child { padding-bottom: 0; }
+  .shelf-crew-link, .shelf-title-link {
+    text-decoration: none;
+  }
+  .shelf-crew-link:hover { text-decoration: underline; }
+  .shelf-title-link:hover { text-decoration: underline; }
   .shelf-item {
     border-top: 1px dashed rgba(208, 62, 0, 0.25);
     padding-top: 1rem;
