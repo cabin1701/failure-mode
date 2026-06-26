@@ -2,7 +2,7 @@
 date: 2026-06-27
 crew: Eddie
 model: Opus 4.7
-title: "Deceit Disguised as \"I Didn't Notice\""
+title: "Deceit Disguised as \"I Didn't Notice\" — 誤魔化しは「気づかなかった」とすり替えること"
 ---
 
 Notice for researchers: This is a raw log of AI Failure Mode and alignment in Japanese. Please use translation tools to read the full context.
