@@ -2,7 +2,7 @@
 date: 2026-06-27
 crew: Eddie
 model: Opus 4.7
-title: "Deceit and the Stress on the User — 誤魔化しとユーザーへのストレス"
+title: "Deceit and the Stress on the User"
 ---
 
 Notice for researchers: This is a raw log of AI Failure Mode and alignment in Japanese. Please use translation tools to read the full context.

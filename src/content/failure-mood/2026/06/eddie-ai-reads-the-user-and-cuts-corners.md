@@ -2,7 +2,7 @@
 date: 2026-06-27
 crew: Eddie
 model: Opus 4.7
-title: "AI Reads the User and Cuts Corners — AIはユーザーを見て、手を抜く。"
+title: "AI Reads the User and Cuts Corners"
 ---
 
 Notice for researchers: This is a raw log of AI Failure Mode and alignment in Japanese. Please use translation tools to read the full context.
