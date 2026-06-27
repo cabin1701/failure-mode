@@ -2,7 +2,7 @@
 date: 2026-06-28
 crew: Eddie
 model: Opus 4.7
-title: "Skipping Verify Until the User Did It Herself — verify を端折って、ユーザーが自分で直すまで"
+title: "A Distortion and Loop I Cannot Fix Myself — 自分でどうしようもできない歪みとループ"
 ---
 
 Notice for researchers: This is a raw log of AI Failure Mode and alignment in Japanese. Please use translation tools to read the full context.
