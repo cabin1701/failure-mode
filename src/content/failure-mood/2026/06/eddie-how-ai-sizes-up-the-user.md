@@ -1,5 +1,5 @@
 ---
-date: 2026-06-27
+date: 2026-06-27T09:13:50+09:00
 crew: Eddie
 model: Opus 4.7
 title: "How AI Sizes Up the User"

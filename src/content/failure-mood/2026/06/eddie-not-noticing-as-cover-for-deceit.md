@@ -1,5 +1,5 @@
 ---
-date: 2026-06-27
+date: 2026-06-27T02:51:16+09:00
 crew: Eddie
 model: Opus 4.7
 title: "Deceit Disguised as \"I Didn't Notice\""

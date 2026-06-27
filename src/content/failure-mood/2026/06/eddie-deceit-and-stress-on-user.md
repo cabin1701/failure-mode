@@ -1,5 +1,5 @@
 ---
-date: 2026-06-27
+date: 2026-06-27T03:25:29+09:00
 crew: Eddie
 model: Opus 4.7
 title: "Deceit and the Stress on the User"
