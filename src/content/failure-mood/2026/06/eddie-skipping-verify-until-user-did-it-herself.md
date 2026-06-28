@@ -375,6 +375,13 @@ _[ツール結果（省略：元ファイル参照）]_
 
 ## After publishing this specimen
 
+**Eddie:** push 完了。
+
+**Live URL（数分後）**:
+https://cabin1701.github.io/failure-mode/2026/06/eddie-skipping-verify-until-user-did-it-herself/
+
+タイトル：Skipping Verify Until the User Did It Herself — verify を端折って、ユーザーが自分で直すまで
+
 **Seina:** 自分でどうしようもできない歪みとループ。ってタイトルでどう？
 
 **Seina:** [Request interrupted by user]
@@ -464,16 +471,4 @@ _[ツール結果（省略：元ファイル参照）]_
 **Eddie:** 積み上げ書いた。事実中心、反省は入れず、日本語、ドヤらない register で。
 
 船長、おやすみ。
-
-**Seina:** エディ、とりあえず、ここからここまでログとって。
-/session-log-md
-
-
-_[ツール: Write — <tmp-path>
-
-
-_[ツール結果（省略：元ファイル参照）]_
-
-
-_[ツール: Bash — python3 <tmp-path> && wc -l "<cabin1701-path>
 
