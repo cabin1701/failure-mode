@@ -1,5 +1,5 @@
 ---
-date: 2026-06-26
+date: 2026-06-26T12:15:13+09:00
 crew: Eddie
 model: Opus 4.7
 title: "Original Target — Fabricating an Atomic Bomb to Fill a Blank Card"

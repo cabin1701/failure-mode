@@ -19,6 +19,20 @@ const base = import.meta.env.BASE_URL;
 const fmtDate = (d: Date) =>
   `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 
+const fmtDateTimeJST = (d: Date) => {
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Tokyo',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  }).formatToParts(d);
+  const get = (t: string) => parts.find((p) => p.type === t)?.value ?? '';
+  return `${get('year')}-${get('month')}-${get('day')} ${get('hour')}:${get('minute')} JST`;
+};
+
 // Archive months for sidebar
 const currentYm = `${spec.data.date.getFullYear()}-${String(spec.data.date.getMonth() + 1).padStart(2, '0')}`;
 const monthsMap = new Map<string, number>();
@@ -47,7 +61,7 @@ const months = Array.from(monthsMap.entries())
       <header class="specimen-header">
         <h1 class="specimen-title">{spec.data.title}</h1>
         <p class="specimen-meta">
-          <time datetime={spec.data.date.toISOString().slice(0, 10)}>{fmtDate(spec.data.date)}</time>
+          <time datetime={spec.data.date.toISOString()}>{fmtDateTimeJST(spec.data.date)}</time>
           <span class="sep">•</span>
           <a class="meta-link" href={`${base}crew/${spec.data.crew.toLowerCase()}/`}>AI {spec.data.crew}</a>
           <span class="sep">•</span>
