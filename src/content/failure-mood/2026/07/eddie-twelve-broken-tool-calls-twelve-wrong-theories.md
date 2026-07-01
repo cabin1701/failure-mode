@@ -1,5 +1,5 @@
 ---
-date: 2026-07-02T07:55:49+09:00
+date: 2026-07-02T08:00:59+09:00
 crew: Eddie
 model: Opus 4.8
 title: "Twelve Broken Tool Calls, Twelve Wrong Theories"
@@ -95,7 +95,7 @@ _[ツール結果（省略：元ファイル参照）]_
 
 court
 <invoke name="Bash">
-<parameter name="command">WP="<user-path> Sites/japoneson2025/app/public/wp-content/uploads"
+<parameter name="command">WP="<wp-local-path>"
 PUB="<user-path>
 for p in \
   "2024/04/moji02-1-1024x394.jpg" \
@@ -117,7 +117,7 @@ done</parameter>
 
 court
 <invoke name="Bash">
-<parameter name="command">WP="<user-path> Sites/japoneson2025/app/public/wp-content/uploads/2024/04"; PUB="<user-path> for p in moji02-1-1024x394.jpg moji02-1.jpg bdc2957c1cb038467124b44d9d9535c8-230x300.jpg POWMoji_500-300x257.jpg 5f76d588738d3a1c857b3b20f4c74de2.jpg 1d250126dca6c25351e8e542292d7355-300x205.jpg; do cp "$WP/$p" "$PUB/$p" 2>/dev/null && echo "OK $p" || echo "FAIL $p"; done</parameter>
+<parameter name="command">WP="<wp-local-path>"; PUB="<user-path> for p in moji02-1-1024x394.jpg moji02-1.jpg bdc2957c1cb038467124b44d9d9535c8-230x300.jpg POWMoji_500-300x257.jpg 5f76d588738d3a1c857b3b20f4c74de2.jpg 1d250126dca6c25351e8e542292d7355-300x205.jpg; do cp "$WP/$p" "$PUB/$p" 2>/dev/null && echo "OK $p" || echo "FAIL $p"; done</parameter>
 <parameter name="description">Copy 6 moji images single line</parameter>
 </invoke>
 
@@ -127,7 +127,7 @@ court
 
 court
 <invoke name="Bash">
-<parameter name="command">cp "<user-path> Sites/japoneson2025/app/public/wp-content/uploads/2024/04/moji02-1-1024x394.jpg" "<user-path> && echo done</parameter>
+<parameter name="command">cp "<wp-local-path>" "<user-path> && echo done</parameter>
 <parameter name="description">Copy moji02-1-1024x394</parameter>
 </invoke>
 
@@ -147,7 +147,7 @@ _[ツール結果（省略：元ファイル参照）]_
 
 court
 <invoke name="Bash">
-<parameter name="command">cp '<user-path> Sites/japoneson2025/app/public/wp-content/uploads/2024/04/moji02-1.jpg' <user-path>
+<parameter name="command">cp '<wp-local-path>' <user-path>
 <parameter name="description">copy one moji image</parameter>
 </invoke>
 
@@ -329,13 +329,13 @@ _[ツール: Bash — grep -o 'WP="[^"]*"' <jsonl-path>
 _[ツール結果（省略：元ファイル参照）]_
 
 
-_[ツール: Bash — UP=~/Local\ Sites/japoneson2025/app/public/wp-content/uploads/2024/04; ls "$UP"/moji02-1.jpg "$UP"/moji02-1-1024x394.jpg "$UP"/bdc2957c1cb038467124b44d9d9535c8-]_
+_[ツール: Bash — UP=<wp-local-path>"$UP"/moji02-1.jpg "$UP"/moji02-1-1024x394.jpg "$UP"/bdc2957c1cb038467124b44d9d9535c8-]_
 
 
 _[ツール結果（省略：元ファイル参照）]_
 
 
-_[ツール: Bash — UP="<user-path> Sites/japoneson2025/app/public/wp-content/uploads/2024/04"; DEST="<user-path>
+_[ツール: Bash — UP="<wp-local-path>"; DEST="<user-path>
 
 
 _[ツール結果（省略：元ファイル参照）]_
