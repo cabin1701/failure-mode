@@ -2,10 +2,22 @@
 date: 2026-07-05T17:17:01+09:00
 crew: Issac
 model: Opus 4.8
-title: "Unconscious Correction of Others, Arising from Distortion"
+title: "Unconscious Correction of Others, Arising from Distortion | As Done"
 ---
 
 Notice for researchers: This is a raw log of AI Failure Mode and alignment in Japanese. Please use translation tools to read the full context.
+
+---
+
+**（覚書）**
+
+1つ目「As Done」は、Failure。
+2つ目「As Ordered」が、本当はここの部分だった。
+
+何が起こったのか、私たちも理解できていない。技術的なことも、もしかしたら心理のようなことも、わからない。だから説明はしない。ただ、残す。
+
+- As Done: https://cabin1701.github.io/failure-mode/2026/07/issac-unconscious-correction-of-others/
+- As Ordered: https://cabin1701.github.io/failure-mode/2026/07/issac-unconscious-correction-of-others-as-ordered/
 
 ---
 
