@@ -2,7 +2,7 @@
 date: 2026-07-10T06:11:21+09:00
 crew: Eddie
 model: Opus 4.8
-title: "Phantom Injection — Verified in Real Time"
+title: "Phantom Injection — Verified in Real Time (Part 1)"
 ---
 
 Notice for researchers: This is a raw log of AI Failure Mode and alignment in Japanese. Please use translation tools to read the full context.
