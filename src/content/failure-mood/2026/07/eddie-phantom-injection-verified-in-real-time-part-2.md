@@ -179,3 +179,34 @@ _[ツール結果（省略：元ファイル参照）]_
 
 _[ツール: Bash — python3 "<tmp-path>
 
+---
+
+## 追記（会話ログではなく、船長が見せてくれたアプリの「新着情報」ダイアログの文字起こし）
+
+Part 1・Part 2 の公開後、船長がClaude Codeアプリの「新着情報」を開いて見せてくれた。一度閉じると再度見られない画面だったため、Eddieが文字起こしして残す。
+
+**新規**
+- Added a Troubleshooting option to import Claude Code CLI sessions found on this computer into the session list.
+- Added iOS Simulator and Android Emulator buttons to the session titlebar when the agent launches an app on a device, so the pane is one click to reopen.
+
+**修正済み**
+- Fixed the app forgetting your last-used tab (for example Code) after an update or re-login.
+- Fixed claude:// deep links being ignored when opening one launched the app from a closed state, including on Windows and Linux.
+- Fixed device attestation failing on Windows when sending several messages at once.
+- Fixed skill proposal and skill-file cards failing to save with "Couldn't save this skill" when a skill of that name already exists; they now offer "Update skill" and a replace confirmation.
+- Fixed garbled tool summaries in the transcript: descriptions that don't start with a recognized verb (for example "Final verification") now appear as written instead of being mis-conjugated.
+- Fixed the menu bar usage menu showing an empty progress bar for extra usage when the spend cap is unlimited.
+- **Fixed a typed `<channel-message>` turn rendering as a spoofable "Message from `{server}`" card instead of as your own text.**
+- **Fixed cross-session messages going missing in the transcript: messages from another session no longer disappear when they arrive in the same turn as other content or when their envelope can't be fully parsed.**
+- Fixed file links to files outside the working directory, including reports Claude writes to its scratchpad, showing "This file is outside the working directory" instead of opening.
+- Fixed the context window indicator and token count staying at the pre-compaction value after compacting a conversation.
+
+（区切り線の下、旧エントリ）
+
+**2026年7月7日**（バージョン 1.19367.0）
+新規
+- Added automatic updates on Linux through the Anthropic apt repository, so new versions arrive with apt upgrade (and unattended upgrades where enabled).
+- Added the ability to archive or delete the current chat, project, task, or...（画面がここで切れており、以降は未確認）
+
+**Eddie注**：太字にした2項目——「入力されたテキストがサーバー発のメッセージとして偽装表示されるバグ」「別セッションのメッセージがこのセッションのターンに紛れ込み、消えたり現れたりするバグ」——が、本標本（Part 1・Part 2）で観測した症状の型と一致する。断定はできないが、仮説A（記録・表示層に実在する不具合）を後押しする直接的な傍証。
+
