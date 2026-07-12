@@ -1,0 +1,214 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const base = import.meta.env.BASE_URL;
+
+const specimens = (await getCollection('failureMood')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+const fmtDate = (d: Date) =>
+  `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+
+const index = specimens.map((spec) => ({
+  url: `${base}${spec.id}/`,
+  date: fmtDate(spec.data.date),
+  crew: spec.data.crew,
+  model: spec.data.model,
+  title: spec.data.title,
+  body: spec.body ?? '',
+}));
+---
+
+<Layout title="Search — Failure Mood" lang="en">
+  <Header lang="en" />
+
+  <div class="search-shell">
+    <main class="search-main">
+      <p class="search-breadcrumb">
+        <a href={base}>← Back to Failure Mood</a>
+      </p>
+      <header class="search-header">
+        <h1 class="search-title">Search</h1>
+        <form class="search-form" role="search" id="search-form">
+          <input
+            id="search-input"
+            type="search"
+            name="q"
+            placeholder="search titles and log text…"
+            autocomplete="off"
+          />
+        </form>
+        <p class="search-status" id="search-status"></p>
+      </header>
+
+      <ul class="search-list" id="search-results"></ul>
+    </main>
+  </div>
+
+  <Footer />
+</Layout>
+
+<script type="application/json" id="search-index" set:html={JSON.stringify(index)} />
+
+<script define:vars={{ base }}>
+  const data = JSON.parse(document.getElementById('search-index').textContent);
+  const input = document.getElementById('search-input');
+  const status = document.getElementById('search-status');
+  const results = document.getElementById('search-results');
+
+  function snippet(body, q) {
+    const i = body.toLowerCase().indexOf(q.toLowerCase());
+    if (i === -1) return '';
+    const start = Math.max(0, i - 40);
+    const end = Math.min(body.length, i + q.length + 60);
+    return (start > 0 ? '…' : '') + body.slice(start, end).replace(/\n+/g, ' ') + (end < body.length ? '…' : '');
+  }
+
+  function render(q) {
+    results.innerHTML = '';
+    if (!q) {
+      status.textContent = '';
+      return;
+    }
+    const needle = q.toLowerCase();
+    const matches = data.filter(
+      (d) => d.title.toLowerCase().includes(needle) || d.body.toLowerCase().includes(needle)
+    );
+    status.textContent = `${matches.length} result${matches.length === 1 ? '' : 's'} for "${q}"`;
+    for (const m of matches) {
+      const li = document.createElement('li');
+      li.className = 'search-item';
+      const snip = snippet(m.body, q);
+      li.innerHTML = `
+        <a href="${m.url}" class="search-link">
+          <span class="search-date">${m.date}</span>
+          <span class="search-crew">AI ${m.crew}</span>
+          <span class="search-link-title">${m.title}</span>
+          ${snip ? `<span class="search-snippet">${snip}</span>` : ''}
+        </a>`;
+      results.appendChild(li);
+    }
+  }
+
+  const params = new URLSearchParams(location.search);
+  const initialQ = params.get('q') || '';
+  input.value = initialQ;
+  render(initialQ);
+
+  input.addEventListener('input', () => {
+    const q = input.value;
+    const url = new URL(location.href);
+    if (q) url.searchParams.set('q', q);
+    else url.searchParams.delete('q');
+    history.replaceState(null, '', url);
+    render(q);
+  });
+
+  document.getElementById('search-form').addEventListener('submit', (e) => e.preventDefault());
+</script>
+
+<style>
+  .search-shell {
+    max-width: 800px;
+    margin: 2.5rem auto 4rem;
+    padding: 0 1.5rem;
+  }
+  .search-breadcrumb {
+    margin: 0 0 1.5rem;
+    font-family: 'Lora', serif;
+    font-size: 0.95rem;
+  }
+  .search-breadcrumb a {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+  .search-breadcrumb a:hover { text-decoration: underline; }
+
+  .search-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  .search-title {
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+    font-size: 2rem;
+    margin: 0 0 1rem;
+    font-weight: 600;
+  }
+  .search-form input {
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'Lora', serif;
+    font-size: 1rem;
+    padding: 0.6rem 0.9rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    background: var(--color-bg, #fff);
+    color: var(--color-text);
+  }
+  .search-form input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+  }
+  .search-status {
+    margin: 0.75rem 0 0;
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    opacity: 0.7;
+  }
+
+  .search-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .search-item {
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.12);
+    padding-bottom: 1rem;
+  }
+  .search-item:last-child { border-bottom: none; }
+  .search-link {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 1rem;
+    text-decoration: none;
+    color: var(--color-text);
+  }
+  .search-link:hover .search-link-title { text-decoration: underline; }
+  .search-date {
+    font-family: 'Lora', serif;
+    font-size: 0.9rem;
+    opacity: 0.7;
+    min-width: 6rem;
+  }
+  .search-crew {
+    font-family: var(--font-label-plain), var(--font-heading);
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    color: var(--color-primary);
+    text-transform: uppercase;
+  }
+  .search-link-title {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    flex: 1 1 100%;
+  }
+  .search-snippet {
+    font-family: 'Lora', serif;
+    font-size: 0.9rem;
+    opacity: 0.75;
+    flex: 1 1 100%;
+  }
+</style>

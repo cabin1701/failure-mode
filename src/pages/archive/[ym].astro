@@ -77,6 +77,12 @@ const allMonths = Array.from(allMonthsMap.entries())
     </main>
 
     <aside class="archive-sidebar" aria-label="Archives">
+      <h2 class="sidebar-title">Search</h2>
+      <form class="sidebar-search" role="search" action={`${base}search/`}>
+        <input type="search" name="q" placeholder="search titles and log text…" autocomplete="off" />
+        <button type="submit" aria-label="Search">⌕</button>
+      </form>
+
       <h2 class="sidebar-title">Archives</h2>
       <ul class="sidebar-list">
         {allMonths.map((m) => (
@@ -190,6 +196,34 @@ const allMonths = Array.from(allMonthsMap.entries())
     letter-spacing: 0.08em;
     text-transform: uppercase;
     font-weight: 600;
+  }
+  .sidebar-search {
+    display: flex;
+    gap: 0.4rem;
+    margin-bottom: 2rem;
+  }
+  .sidebar-search input {
+    flex: 1;
+    min-width: 0;
+    font-family: 'Lora', serif;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.6rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    background: var(--color-bg, #fff);
+    color: var(--color-text);
+  }
+  .sidebar-search input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+  }
+  .sidebar-search button {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    background: transparent;
+    color: var(--color-primary);
+    cursor: pointer;
+    padding: 0 0.6rem;
   }
   .sidebar-list {
     list-style: none;
