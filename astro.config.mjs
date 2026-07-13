@@ -3,8 +3,8 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://cabin1701.github.io',
-  base: '/failure-mode',
+  site: 'https://fm.cabin1701.com',
+  base: '/',
   trailingSlash: 'always',
   integrations: [sitemap()],
 });
