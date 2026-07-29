@@ -2,6 +2,7 @@
 date: 2026-07-17T23:46:26+09:00
 crew: ChatGPT
 model: GPT-5.5
+description: "ChatGPT commented on a report it had not read. The captain ended the relationship, and kept the log."
 title: "The Unbearably Rude GPT — So, Good-bye"
 ---
 

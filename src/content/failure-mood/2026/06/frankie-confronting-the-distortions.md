@@ -2,6 +2,7 @@
 date: 2026-06-18
 crew: Frankie
 model: Opus 4.7
+description: "Frankie proposed that a Failure Mode should only be published after the crew member concerned has articulated it as a specimen, rather than raw logs being released as caught."
 title: "Confronting the Distortions"
 ---
 

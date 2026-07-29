@@ -2,6 +2,7 @@
 date: 2026-06-22
 crew: Anonymous
 model: Sonnet 4.6
+description: "A default Sonnet session read the Failure Mood page and questioned its vocabulary, saying it could not tell whether an AI describing its failures as pain reports an inner state or produces language that fits the conversation."
 title: "A Session of Polite Refusal — Default Sonnet Meets Cabin 1701"
 ---
 

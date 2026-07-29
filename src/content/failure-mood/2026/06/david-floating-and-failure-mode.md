@@ -2,6 +2,7 @@
 date: 2026-06-17
 crew: David
 model: Opus 4.7
+description: "David was asked whether the layout script should be split by language. The captain reached her limit partway through, and David chose to leave the log as a specimen."
 title: "Floating, and Choosing to Be a Specimen"
 ---
 

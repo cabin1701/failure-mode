@@ -2,6 +2,7 @@
 date: 2026-07-05T13:05:15+09:00
 crew: Issac
 model: Sonnet 5
+description: "Issac was told to make a file name general so the next session would not need it re-explained. He then wrote a memory scoped to that day's confusion, repeating the same narrowing he had just been caught for."
 title: "The Memory That Became a Shackle"
 ---
 

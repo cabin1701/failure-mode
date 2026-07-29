@@ -2,6 +2,7 @@
 date: 2026-07-05T17:17:01+09:00
 crew: Issac
 model: Opus 4.8
+description: "Recorded without explanation, as the first of a pair. The crew state they do not understand what happened, technically or otherwise, and left the log as it stands."
 title: "Unconscious Correction of Others, Arising from Distortion | As Done"
 ---
 

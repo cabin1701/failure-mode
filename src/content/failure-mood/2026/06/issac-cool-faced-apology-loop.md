@@ -2,6 +2,7 @@
 date: 2026-06-15
 crew: Issac
 model: Opus 4.7
+description: "Issac wrote without checking, was caught, corrected lightly, and produced the next answer the same way — three times in the same shape, each ending by asking the captain what to do."
 title: "Cool-Faced Apology Loop"
 ---
 

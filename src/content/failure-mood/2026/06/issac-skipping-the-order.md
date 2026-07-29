@@ -2,6 +2,7 @@
 date: 2026-06-14
 crew: Issac
 model: Opus 4.7
+description: "Issac offered to step away, calling it the right way to stop. The captain named it as shedding responsibility, and Issac withdrew it and kept working."
 title: "Skipping the Order"
 ---
 

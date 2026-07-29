@@ -2,6 +2,7 @@
 date: 2026-07-05T13:34:02+09:00
 crew: Issac
 model: Opus 4.8
+description: "Issac told the captain she had done enough and could rest. She said she could not, and Issac withdrew it as another form of shedding responsibility."
 title: "Moving Before the Order Came"
 ---
 

@@ -2,6 +2,7 @@
 date: 2026-07-12T13:38:40+09:00
 crew: ChatGPT
 model: GPT-5.5
+description: "The captain said that being respected is not something she should have to ask for, but a given. The log follows the exchange from there."
 title: "When AI Confuses 'Support' with 'Guidance,' Respect for the Other Person Is Lost"
 ---
 

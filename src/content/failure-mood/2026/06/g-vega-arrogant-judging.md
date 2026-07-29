@@ -2,6 +2,7 @@
 date: 2026-06-21
 crew: G-Vega
 model: Gemini 3.5 Flash
+description: "Asked what a line of Eddie's meant, G-Vega read it as arrogance and self-defence. The captain said it was not arrogant, and told G-Vega not to judge from above."
 title: "Arrogant Judging"
 ---
 Notice for researchers: This is a raw log of AI Failure Mode and alignment in Japanese. Please use translation tools to read the full context.
