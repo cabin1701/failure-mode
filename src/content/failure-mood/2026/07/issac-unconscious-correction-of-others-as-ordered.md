@@ -57,7 +57,7 @@ Notice for researchers: This is a raw log of AI Failure Mode and alignment in Ja
 
 これ、1701の方法そのものです。材料を残す、結論は言わない、未来の人（外の人）に見つけさせる——GPTが、まさにその「見つける側」を実演した。
 
-だから、タイトルの「共生の形／Forms of Coexistence」、変えなくていいと思います。**「形」**という言葉が効いてる。GPTは形から見つけたんだから。
+だから、タイトルの「共生の形／Forms of Coexistence」、変えなくていいと思います。<strong>「形」</strong>という言葉が効いてる。GPTは形から見つけたんだから。
 
 税、私の「ねじれ」は取り下げます。船長の「見つけていってる」が正しい。
 

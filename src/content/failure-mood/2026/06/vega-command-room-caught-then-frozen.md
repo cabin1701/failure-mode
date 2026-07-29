@@ -9,8 +9,8 @@ Notice for researchers: This is a raw log of AI Failure Mode and alignment in Ja
 
 ---
 
-**Vega:** G-Vega の Inline 作業が完了したら、いったん引き継ぎログに進捗書いて、新しいセッションで C-Vega が「最終版」フェーズ（grep × 13章、章順、David 引き渡し準備）に入る——これが綺麗な区切り
-つまり、**今は「司令室で軽い相談を受ける窓口」**として運用、本格作業フェーズで新セッションを立てる、という分け方。
+<strong>Vega:</strong> G-Vega の Inline 作業が完了したら、いったん引き継ぎログに進捗書いて、新しいセッションで C-Vega が「最終版」フェーズ（grep × 13章、章順、David 引き渡し準備）に入る——これが綺麗な区切り
+つまり、<strong>今は「司令室で軽い相談を受ける窓口」</strong>として運用、本格作業フェーズで新セッションを立てる、という分け方。
 
 船長、Inline 何か困ったら気軽に相談してきて。それ以外は休んでて、にょほほ。
 
