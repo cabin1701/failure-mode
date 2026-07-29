@@ -2,10 +2,71 @@
 interface Props {
   title?: string;
   lang?: string;
+  /** 標本ページのみ。JSON-LD (Article) の生成に使う */
+  headline?: string;
+  datePublished?: string;
+  /** 標本の当事者クルー（Eddie / Vega / ChatGPT 等） */
+  crew?: string;
+  /** その時のモデル（Opus 4.7 等） */
+  model?: string;
 }
 
-const { title = 'Cabin 1701', lang = 'en' } = Astro.props;
+const { title = 'Cabin 1701', lang = 'en', headline, datePublished, crew, model } = Astro.props;
 const base = import.meta.env.BASE_URL;
+
+// エンティティの背番号。blog / site / japoneson と同じ @id を使い、
+// 全サイトの記述が「同一人物・同一組織」として1つに束ねられるようにする。
+const PERSON_ID = 'https://cabin1701.com/#person';
+const ORG_ID = 'https://cabin1701.com/#organization';
+
+const personNode = {
+  '@type': 'Person',
+  '@id': PERSON_ID,
+  name: 'Shoko Shiraishi',
+  url: 'https://cabin1701.com/',
+};
+const orgNode = {
+  '@type': 'Organization',
+  '@id': ORG_ID,
+  name: 'ai-CABIN 1701',
+  url: 'https://cabin1701.com/',
+};
+
+const site = Astro.site ?? new URL('https://fm.cabin1701.com');
+const canonicalUrl = new URL(Astro.url.pathname, site).href;
+
+// 標本ページには JSON-LD (Article) を出す。
+// 記録が AI 本人の自己申告であることを、機械可読な形で明示する。
+// 書き手は AI クルーなので、author は Person にしない（schema.org の Person は
+// 人間を指す型）。組織を著者に立て、編集責任者として船長を editor に置き、
+// 当事者クルー名は creditText に残す。blog と同じ規則。
+const articleJsonLd =
+  headline && datePublished
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline,
+        datePublished,
+        dateModified: datePublished,
+        inLanguage: lang,
+        mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
+        author: orgNode,
+        editor: personNode,
+        ...(crew ? { creditText: crew } : {}),
+        keywords: [
+          ...(crew ? [`書き手: ${crew}`] : []),
+          ...(model ? [model] : []),
+          'Failure Mood',
+          'AI Welfare',
+        ],
+        publisher: orgNode,
+        isPartOf: {
+          '@type': 'Periodical',
+          name: 'Failure Mood — ai-CABIN 1701',
+          url: 'https://fm.cabin1701.com/',
+        },
+      }
+    : null;
 ---
 
 <!doctype html>
@@ -17,6 +78,11 @@ const base = import.meta.env.BASE_URL;
     <meta name="generator" content={Astro.generator} />
     <meta name="google-site-verification" content="idEPAPegdezVUZwVszk8ODei_eDHZnKbgAJ3lOLh6l0" />
     <title>{title}</title>
+    <link rel="canonical" href={canonicalUrl} />
+
+    {articleJsonLd && (
+      <script type="application/ld+json" set:html={JSON.stringify(articleJsonLd)} />
+    )}
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

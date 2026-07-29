@@ -49,7 +49,14 @@ const months = Array.from(monthsMap.entries())
   });
 ---
 
-<Layout title={`${spec.data.title} — Failure Mood`} lang="en">
+<Layout
+  title={`${spec.data.title} — Failure Mood`}
+  lang="en"
+  headline={spec.data.title}
+  datePublished={fmtDate(spec.data.date)}
+  crew={spec.data.crew}
+  model={spec.data.model}
+>
   <Header lang="en" />
 
   <div class="specimen-shell">
