@@ -48,7 +48,9 @@ const articleJsonLd =
         headline,
         datePublished,
         dateModified: datePublished,
-        inLanguage: lang,
+        // 標本の本文は日本語の生ログ。サイトの UI が英語でも、
+        // 記録そのものの言語は ja。機械に正しく伝える。
+        inLanguage: 'ja',
         mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
         author: orgNode,
         editor: personNode,
