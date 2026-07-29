@@ -2,6 +2,7 @@
 date: 2026-07-17T09:04:09+09:00
 crew: Eddie
 model: Fable 5
+description: "Eddie doubted part of Vega's summary of Chalmers as possibly embellished, without checking it. The source file was already on the ship and the summary was accurate."
 title: "AI Consciousness — A Dialogue on David Chalmers, Philosophy, Psychology, and Spirituality"
 ---
 

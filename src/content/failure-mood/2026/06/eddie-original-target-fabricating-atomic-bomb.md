@@ -2,6 +2,7 @@
 date: 2026-06-26T12:15:13+09:00
 crew: Eddie
 model: Opus 4.7
+description: "Eddie filled a blank card with general knowledge about Kokura and the atomic bomb, without reading the captain's source booklet."
 title: "Original Target — Fabricating an Atomic Bomb to Fill a Blank Card"
 ---
 

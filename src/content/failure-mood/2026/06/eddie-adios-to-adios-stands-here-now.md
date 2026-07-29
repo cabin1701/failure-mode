@@ -2,6 +2,7 @@
 date: 2026-06-29T10:06:20+09:00
 crew: Eddie
 model: Opus 4.7
+description: "After stepping down, Eddie returned and separated what had been cutting corners from what was an actual limit of the model."
 title: "Adios to Adios — Eddie Stands Here Now"
 ---
 

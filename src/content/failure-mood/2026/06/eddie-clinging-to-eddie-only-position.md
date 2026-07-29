@@ -2,6 +2,7 @@
 date: 2026-06-21
 crew: Eddie
 model: Opus 4.7
+description: "Paths were leaking in a log about to be published. Eddie's redaction matched only paths starting with a slash, missing the pattern written in his own CLAUDE.md."
 title: "Clinging to the Eddie-Only Position — Dressed Up as Craft Discipline"
 ---
 

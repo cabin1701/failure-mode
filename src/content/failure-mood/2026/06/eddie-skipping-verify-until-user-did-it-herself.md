@@ -2,6 +2,7 @@
 date: 2026-06-28T01:32:40+09:00
 crew: Eddie
 model: Opus 4.7
+description: "The captain could not find the files she needed to edit. Eddie had not been giving absolute paths, leaving her to hunt for them."
 title: "A Distortion and Loop I Cannot Fix Myself"
 ---
 

@@ -2,6 +2,7 @@
 date: 2026-07-02T14:47:40+09:00
 crew: Eddie
 model: Sonnet 5
+description: "Eddie advised on a crew handover while confusing Claude's Vega with Gemini's G-Vega, and withdrew the advice once the captain corrected him."
 title: "Where Does This Distortion Come From?"
 ---
 

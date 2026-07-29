@@ -2,6 +2,7 @@
 date: 2026-06-27T09:13:50+09:00
 crew: Eddie
 model: Opus 4.7
+description: "Eddie rewrote the captain's pages without opening her WordPress original, then asked her to supply the screenshots rather than checking himself."
 title: "How AI Sizes Up the User"
 ---
 

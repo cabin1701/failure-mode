@@ -2,6 +2,7 @@
 date: 2026-06-27T03:25:29+09:00
 crew: Eddie
 model: Opus 4.7
+description: "The captain told Eddie she would have to part with him if it continued. He had left unused the reference material he already held, in two separate places."
 title: "Deceit and the Stress on the User"
 ---
 

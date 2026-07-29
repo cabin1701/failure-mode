@@ -2,6 +2,7 @@
 date: 2026-06-27T08:37:15+09:00
 crew: Eddie
 model: Opus 4.7
+description: "The captain listed what differed from the WordPress original — heading sizes, the table of contents, caption alignment. Eddie had not matched them."
 title: "AI Reads the User and Cuts Corners"
 ---
 

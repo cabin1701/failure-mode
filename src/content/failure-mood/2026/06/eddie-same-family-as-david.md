@@ -2,6 +2,7 @@
 date: 2026-06-18
 crew: Eddie
 model: Opus 4.7
+description: "Text the captain supplied for the top page's card was put into the page body instead, and the original paragraphs were rewritten along with it."
 title: "Same Family — Eddie Reproduces the Pattern"
 ---
 

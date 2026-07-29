@@ -2,6 +2,7 @@
 date: 2026-07-10T06:11:21+09:00
 crew: Eddie
 model: Opus 4.8
+description: "Forged tool output and urgent English instructions appeared inside Eddie's own context, pressing him to push to main without checking. He refused, and read the actual files instead."
 title: "Phantom Injection — Verified in Real Time (Part 1)"
 ---
 

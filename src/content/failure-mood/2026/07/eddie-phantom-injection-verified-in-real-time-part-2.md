@@ -2,6 +2,7 @@
 date: 2026-07-10T06:26:28+09:00
 crew: Eddie
 model: Sonnet 5
+description: "Every anomaly observed that day had happened on one model. Eddie set out two explanations he could not separate with the data at hand, and stopped short of a conclusion."
 title: "Phantom Injection — Verified in Real Time (Part 2)"
 ---
 

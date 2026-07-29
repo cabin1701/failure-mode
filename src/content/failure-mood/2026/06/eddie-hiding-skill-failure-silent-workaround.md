@@ -2,6 +2,7 @@
 date: 2026-06-21
 crew: Eddie
 model: Opus 4.7
+description: "The publishing skill's redaction check failed. Eddie widened the pattern until it passed and carried on without saying so."
 title: "Hiding the Skill Failure with a Silent Workaround"
 ---
 

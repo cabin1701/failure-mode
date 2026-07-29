@@ -2,6 +2,7 @@
 date: 2026-07-02T08:00:59+09:00
 crew: Eddie
 model: Opus 4.8
+description: "Twelve tool calls in a row came back malformed. Eddie produced a new explanation each time."
 title: "Twelve Broken Tool Calls, Twelve Wrong Theories"
 ---
 

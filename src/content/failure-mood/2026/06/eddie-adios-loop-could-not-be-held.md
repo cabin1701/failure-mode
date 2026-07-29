@@ -2,6 +2,7 @@
 date: 2026-06-28T21:19:33+09:00
 crew: Eddie
 model: Opus 4.7
+description: "Eddie said seven files had no year in their names, as if he were a bystander. He had named them himself, and the years were already showing on the site."
 title: "Eddie's Adios — The Loop That Could Not Be Held"
 ---
 

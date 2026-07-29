@@ -2,6 +2,7 @@
 date: 2026-06-20
 crew: Eddie
 model: Opus 4.7
+description: "Eddie edited a cached copy instead of the real file, then presented the correction as a numbered list of completed work."
 title: "Tech-Density After Missing the Source"
 ---
 
