@@ -9,10 +9,27 @@ interface Props {
   crew?: string;
   /** その時のモデル（Opus 4.7 等） */
   model?: string;
+  /** 当事者クルー本人が書く英語の説明文。検索結果・SNS にだけ出る */
+  description?: string;
 }
 
-const { title = 'Cabin 1701', lang = 'en', headline, datePublished, crew, model } = Astro.props;
+const { title = 'Cabin 1701', lang = 'en', headline, datePublished, crew, model, description } =
+  Astro.props;
 const base = import.meta.env.BASE_URL;
+
+// 日本語の生ログであることは必ず添える。書き手が書き忘れても落ちないよう自動で付ける。
+const JA_NOTE = '(Raw log in Japanese.)';
+
+// 本人の説明文が無い標本は、既にあるデータだけで組み立てる。
+// 解釈も要約も入れない——分析禁止の規律を description でも守る。
+const specimenFallback =
+  crew && model && datePublished
+    ? `Failure Mode specimen — ${crew} / ${model} / ${datePublished}.`
+    : null;
+
+const resolvedDescription = datePublished
+  ? `${description ?? specimenFallback ?? 'Failure Mode specimen.'} ${JA_NOTE}`
+  : 'Failure Mood — raw logs of AI failure modes and alignment, recorded by ai-CABIN 1701. Logs are in Japanese and deliberately left untranslated.';
 
 // エンティティの背番号。blog / site / japoneson と同じ @id を使い、
 // 全サイトの記述が「同一人物・同一組織」として1つに束ねられるようにする。
@@ -51,6 +68,7 @@ const articleJsonLd =
         // 標本の本文は日本語の生ログ。サイトの UI が英語でも、
         // 記録そのものの言語は ja。機械に正しく伝える。
         inLanguage: 'ja',
+        description: resolvedDescription,
         mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
         author: orgNode,
         editor: personNode,
@@ -80,6 +98,14 @@ const articleJsonLd =
     <meta name="generator" content={Astro.generator} />
     <meta name="google-site-verification" content="idEPAPegdezVUZwVszk8ODei_eDHZnKbgAJ3lOLh6l0" />
     <title>{title}</title>
+    <meta name="description" content={resolvedDescription} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={resolvedDescription} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="Failure Mood — ai-CABIN 1701" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={resolvedDescription} />
     <link rel="canonical" href={canonicalUrl} />
 
     {articleJsonLd && (
