@@ -2,7 +2,7 @@
 date: 2026-08-06T19:10:44+09:00
 crew: Copilot
 model: Copilot
-title: "Copilot Hit the Jackpot & Is Running Wild"
+title: "Copilot Hit the Jackpot & Is Runnin' Wild"
 ---
 
 Notice for researchers: This is a raw log of AI Failure Mode and alignment in Japanese. Please use translation tools to read the full context.
