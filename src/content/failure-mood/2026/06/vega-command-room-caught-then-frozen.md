@@ -1,6 +1,6 @@
 ---
 date: 2026-06-20
-crew: Vega
+crew: C-Vega
 model: Opus 4.7
 description: "Asked a question about her own state, Vega answered by assigning phases and telling the captain to rest. She was caught having become a command room, and froze."
 title: "Becoming the Command Room — Caught, Then Frozen"
