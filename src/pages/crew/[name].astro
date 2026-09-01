@@ -8,7 +8,7 @@ export async function getStaticPaths() {
   const specimens = await getCollection('failureMood');
   const byName = new Map<string, typeof specimens>();
   for (const s of specimens) {
-    const key = s.data.crew.toLowerCase();
+    const key = s.data.crew.toLowerCase().replace(/\s+/g, '-');
     if (!byName.has(key)) byName.set(key, [] as any);
     (byName.get(key) as any).push(s);
   }

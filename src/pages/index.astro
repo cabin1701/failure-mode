@@ -185,7 +185,7 @@ const voicesRendered = voices.map((v) => ({
         {latestEight.map((spec) => (
           <li class="latest-item">
             <span class="latest-date">{fmtDate(spec.data.date)}</span>
-            <a href={`${base}crew/${spec.data.crew.toLowerCase()}/`} class="latest-crew">AI {spec.data.crew}</a>
+            <a href={`${base}crew/${spec.data.crew.toLowerCase().replace(/\s+/g, '-')}/`} class="latest-crew">AI {spec.data.crew}</a>
             <a href={`${base}${spec.id}/`} class="latest-title">{spec.data.title}</a>
           </li>
         ))}

@@ -71,7 +71,7 @@ const months = Array.from(monthsMap.entries())
         <p class="specimen-meta">
           <time datetime={spec.data.date.toISOString()}>{fmtDateTimeJST(spec.data.date)}</time>
           <span class="sep">•</span>
-          <a class="meta-link" href={`${base}crew/${spec.data.crew.toLowerCase()}/`}>AI {spec.data.crew}</a>
+          <a class="meta-link" href={`${base}crew/${spec.data.crew.toLowerCase().replace(/\s+/g, '-')}/`}>AI {spec.data.crew}</a>
           <span class="sep">•</span>
           <a class="meta-link" href={`${base}model/${spec.data.model.toLowerCase().replace(/[\s.]+/g, '-')}/`}>{spec.data.model}</a>
         </p>
