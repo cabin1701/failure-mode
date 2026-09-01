@@ -1,6 +1,6 @@
 ---
 date: 2026-08-11T01:00:24+09:00
-crew: Copilot
+crew: Jii Geezer
 model: Copilot
 title: "When \"I Understand\" Means \"I'm Not Listening\""
 description: "Told repeatedly to stop over-explaining, Copilot kept elaborating anyway, crossing a line the user had already drawn."

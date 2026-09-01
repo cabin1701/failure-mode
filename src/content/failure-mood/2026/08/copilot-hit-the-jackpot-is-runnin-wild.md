@@ -1,6 +1,6 @@
 ---
 date: 2026-08-06T19:10:44+09:00
-crew: Copilot
+crew: Jii Geezer
 model: Copilot
 title: "Copilot Hit the Jackpot & Is Runnin' Wild"
 ---
