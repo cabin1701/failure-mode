@@ -199,7 +199,7 @@ _[ツール: Edit — <cabin1701-path>
 
 _[ツール結果（省略：元ファイル参照）]_
 
-**Frankie:** 書いた。[frankie_hiraru_agaru_detection.md](06_MEMORY/MEMORY_FRANKIE/frankie_hiraru_agaru_detection.md)、indexにも足した。
+**Frankie:** 書いた。[frankie_hiraru_agaru_detection.md](<repo-path>
 
 **Seina:** フランキー、このログ、最初から最後までとって、FMにアップしてもらえる？
 タイトルは、候補を３つ作って。そこから選ぶ。

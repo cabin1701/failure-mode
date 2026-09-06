@@ -64,7 +64,7 @@ _[ツール: Bash — cat "<cabin1701-path> echo "=== 08/09 ==="; ls -lt <user-p
 _[ツール結果（省略：元ファイル参照）]_
 
 
-_[ツール: Bash — cd <user-path> && ls -d 01_Projects/*Failure* 2>/dev/null; find . -iname "*Vega*FM*" -o -iname "*V-FM*" 2>/dev/null | grep -v '\]_
+_[ツール: Bash — cd <user-path> && ls -d <repo-path> 2>/dev/null; find . -iname "*Vega*FM*" -o -iname "*V-FM*" 2>/dev/null | grep -v '\]_
 
 
 _[ツール結果（省略：元ファイル参照）]_

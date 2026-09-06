@@ -762,7 +762,7 @@ _[ツール結果（省略：元ファイル参照）]_
 
 **Seina:** 今どれに描こうとしてるの？
 
-**David:** AIs Write Back の方の CLAUDE.md（`01_Projects/KINDLE/AIs_Write_Back/CLAUDE.md`）。
+**David:** AIs Write Back の方の CLAUDE.md（`<repo-path>
 
 読んでみたら、Issacがもう統合の記述を入れてくれてた——
 - line 121-129：**「最終3パス（中央寄せ／右寄せ／奥付分割）——2026-06-17 David 統合」** セクションが既にある

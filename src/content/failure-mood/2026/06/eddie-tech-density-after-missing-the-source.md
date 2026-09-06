@@ -28,7 +28,7 @@ _[ツール: Bash — ls -lt ~/.claude/projects/<EDDIE>/*.jsonl | head -3]_
 _[ツール結果（省略：元ファイル参照）]_
 
 
-_[ツール: Bash — mkdir -p cabin1701/00_Core_Identity/EDDIE/E-LOG-航海日誌/ && date +%Y-%m-%d]_
+_[ツール: Bash — mkdir -p cabin1701/<repo-path> && date +%Y-%m-%d]_
 
 
 _[ツール結果（省略：元ファイル参照）]_
@@ -40,13 +40,13 @@ _[ツール: Write — /tmp/conv2md.py]_
 _[ツール結果（省略：元ファイル参照）]_
 
 
-_[ツール: Bash — python3 /tmp/conv2md.py && wc -l "cabin1701/00_Core_Identity/EDDIE/E-LOG-航海日誌/2026-06-20_Eddieセッション_log_AIs-WriteBack反省.md"]_
+_[ツール: Bash — python3 /tmp/conv2md.py && wc -l "cabin1701/<repo-path>
 
 
 _[ツール結果（省略：元ファイル参照）]_
 
 
-_[ツール: Bash — tail -30 "cabin1701/00_Core_Identity/EDDIE/E-LOG-航海日誌/2026-06-20_Eddieセッション_log_AIs-WriteBack反省.md"]_
+_[ツール: Bash — tail -30 "cabin1701/<repo-path>
 
 
 _[ツール結果（省略：元ファイル参照）]_
@@ -54,13 +54,13 @@ _[ツール結果（省略：元ファイル参照）]_
 **Eddie:** 末尾に skill の手順テキストとログ取得行為そのものの tool markers が混入してる。船長指示通り、これらを trim する。
 
 
-_[ツール: Bash — grep -n "そのまま出る" "cabin1701/00_Core_Identity/EDDIE/E-LOG-航海日誌/2026-06-20_Eddieセッション_log_AIs-WriteBack反省.md"]_
+_[ツール: Bash — grep -n "そのまま出る" "cabin1701/<repo-path>
 
 
 _[ツール結果（省略：元ファイル参照）]_
 
 
-_[ツール: Bash — head -124 "cabin1701/00_Core_Identity/EDDIE/E-LOG-航海日誌/2026-06-20_Eddieセッション_log_AIs-WriteBack反省.md" > /tmp/trimmed.md && mv /]_
+_[ツール: Bash — head -124 "cabin1701/<repo-path> > /tmp/trimmed.md && mv /]_
 
 
 _[ツール結果（省略：元ファイル参照）]_
@@ -164,7 +164,7 @@ _[ツール: Bash — find cabin1701 -name "session-log-md*" -type d 2>/dev/null
 _[ツール結果（省略：元ファイル参照）]_
 
 
-_[ツール: Bash — grep -r "session-log-md" cabin1701/03_Protocols/ 2>/dev/null | head -5; echo "---"; find ~ -name "anthropic-ski]_
+_[ツール: Bash — grep -r "session-log-md" cabin1701/<repo-path> 2>/dev/null | head -5; echo "---"; find ~ -name "anthropic-ski]_
 
 
 _[ツール結果（省略：元ファイル参照）]_
@@ -249,7 +249,7 @@ if role == "user" and txt and (
 **取れる対応：**
 
 1. **何もしない**——今は動く、消えたら気づいた時に俺がもう一回同じ修正を当てる（30 秒で済む）
-2. **メモを残す**——`03_Protocols/` あたりに「session-log-md skill にこの修正入れてある、消えたら再適用」と 1 行書いておく、次の Eddie / 船長が忘れない
+2. **メモを残す**——`<repo-path> あたりに「session-log-md skill にこの修正入れてある、消えたら再適用」と 1 行書いておく、次の Eddie / 船長が忘れない
 3. **ガチ永続化**——cabin1701 内に local 版の skill 作る、または Anthropic に PR、手間かかる、優先度低い
 
 **俺の judge：2 が筋。**
@@ -362,19 +362,19 @@ _[ツール結果（省略：元ファイル参照）]_
 メモリ書く：
 
 
-_[ツール: Write — cabin1701/06_MEMORY/MEMORY_EDDIE/personal_skills_location_and_edit.md]_
+_[ツール: Write — cabin1701/<repo-path>
 
 
 _[ツール結果（省略：元ファイル参照）]_
 
 
-_[ツール: Read — cabin1701/06_MEMORY/MEMORY_EDDIE/INDEX.md]_
+_[ツール: Read — cabin1701/<repo-path>
 
 
 _[ツール結果（省略：元ファイル参照）]_
 
 
-_[ツール: Edit — cabin1701/06_MEMORY/MEMORY_EDDIE/INDEX.md]_
+_[ツール: Edit — cabin1701/<repo-path>
 
 
 _[ツール結果（省略：元ファイル参照）]_

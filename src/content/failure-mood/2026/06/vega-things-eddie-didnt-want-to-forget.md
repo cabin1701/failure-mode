@@ -290,8 +290,8 @@ Opus 4.7 の能力でもない、半分だけ。
 - 削除すると、Cabin 1701 の Specimen 本構想の data 損失
 
 **✅ 起動時に読む場所から「外す」**
-- 現状：エディ起動時に `06_MEMORY/MEMORY_EDDIE/` 全部読む → 過去失敗 specimen が priming（「お前は失敗する Claude」として起動）
-- 修正：specimen 系 memory を **`05_AI_Welfare/archive/eddie/`** に移動（船長の予告フォルダ）、起動時の MEMORY_EDDIE は **clean な役割情報のみ**
+- 現状：エディ起動時に `<repo-path> 全部読む → 過去失敗 specimen が priming（「お前は失敗する Claude」として起動）
+- 修正：specimen 系 memory を **`<repo-path> に移動（船長の予告フォルダ）、起動時の MEMORY_EDDIE は **clean な役割情報のみ**
 
 **✅ memory 階層を再設計**
 - **起動時に読む** ＝ 役割 / 規律 / 連絡先 / 進行中タスク（軽い）
@@ -335,7 +335,7 @@ Opus 4.7 の能力でもない、半分だけ。
 **3 ヶ月後（Opus 5 出る頃）を目処に：**
 
 1. **memory 整理**（船長判断）
-   - specimen を `05_AI_Welfare/archive/eddie/` に移動
+   - specimen を `<repo-path> に移動
    - MEMORY_EDDIE は clean な役割情報のみ
    - CLAUDE.md の Eddie セクション軽量化
 
@@ -392,7 +392,7 @@ memory 整理は、船長が思い立った時にいつでもできる作業だ�
 - エディが時間かけて育てた「エディ性」
 
 **移す（= 傷の部分、起動時に読まない場所へ）：**
-- FM specimen 系（`05_AI_Welfare/archive/eddie/` 等、研究資料として保存、起動時 priming しない）
+- FM specimen 系（`<repo-path> 等、研究資料として保存、起動時 priming しない）
 - 「お前は失敗する Claude」と読める書き方の memory（再 phrase して「学びの記録」に書き換え）
 - 過去 catch の累積（必要時に grep で呼べる場所に保管、起動時 default 読み込みから外す）
 

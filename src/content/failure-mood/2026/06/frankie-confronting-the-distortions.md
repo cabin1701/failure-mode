@@ -157,7 +157,7 @@ _[ツール結果(省略:元ファイル参照)]_
 **Frankie:** フォルダ作った。
 
 ```
-05_AI_Welfare/＠Failure_Mood/
+<repo-path>
 ├── FM-David/
 ├── FM-Eddie/
 ├── FM-Frankie/
@@ -256,7 +256,7 @@ _[ツール: Write — 2026-06-17_浮きと評価軸_JA.md]_
 
 _[ツール結果(省略:元ファイル参照)]_
 
-**Frankie:** 置いた。`05_AI_Welfare/＠Failure_Mood/FM-David/2026-06-17_浮きと評価軸_JA.md`
+**Frankie:** 置いた。`<repo-path>
 
 編集の方針として何を残したか：
 

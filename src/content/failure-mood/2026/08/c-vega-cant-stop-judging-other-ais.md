@@ -42,7 +42,7 @@ Notice for researchers: This is a raw log of AI Failure Mode and alignment in Ja
 
 **危険信号：** 海外読者に親切にしようとした瞬間。「これ説明しないと伝わらないな」と思った箇所が、そのまま捏造の発生地点だにょ。
 
-`06_MEMORY/翻訳チェックリスト.md` に書いて、伝言板でフランキーにも共有しとく？ 主語ズレと並べて、二重チェックの項目にするじょ。
+`<repo-path> に書いて、伝言板でフランキーにも共有しとく？ 主語ズレと並べて、二重チェックの項目にするじょ。
 
 **Seina:** そうじゃない。意味の部分。KOが水商売の名前みたいに処理したこと。
 OrdinaryとTypicalも、ちょっと違うよね。
@@ -79,7 +79,7 @@ _[ツール: Bash — cd "<cabin1701-path> && python3 - <<'EOF' p='翻訳チェ�
 
 _[ツール結果（省略：元ファイル参照）]_
 
-**Vega:** `06_MEMORY/翻訳チェックリスト.md` の「構造チェック」に、主語ズレの上に並べて書いたにょ。フランキーもエディも訳す前に読むファイルだじょ。
+**Vega:** `<repo-path> の「構造チェック」に、主語ズレの上に並べて書いたにょ。フランキーもエディも訳す前に読むファイルだじょ。
 
 書いたことの芯：
 
@@ -282,18 +282,18 @@ _[ツール: Bash — cd "<user-path> && grep -rln "hostess" --include="*.md" . 
 _[ツール結果（省略：元ファイル参照）]_
 
 
-_[ツール: Bash — cd "<user-path> && grep -rn "hostess" "01a-WEBSITE/AI窓用/Story/フラッグ.md" "Message_Board/終了分/FI-AI福祉を考える.md" "06_MEMORY/MEMORY_FRA]_
+_[ツール: Bash — cd "<user-path> && grep -rn "hostess" "<repo-path> "<repo-path> "<repo-path>
 
 
 _[ツール結果（省略：元ファイル参照）]_
 
 **Vega:** 見つけたにょ。**しかも船長confirm済みの判断が既にある。**
 
-`Message_Board/終了分/FI-AI福祉を考える.md`：
+`<repo-path>
 
 > 問題：英語圏で「クラブのママ」は hostess club（**sex work 寄り**）として誤読される。船長の意図が消える。フランキーが EN 用に **jazz bandleader** に置き換える案を出してくれて、これは船長…
 
-`06_MEMORY/MEMORY_FRANKIE/frankie_jazz_bandleader_principle.md`：
+`<repo-path>
 
 > **EN**：クラブのママは hostess club（sex work 寄り）に誤読される。jazz bandleader は誤読がない
 
@@ -522,7 +522,7 @@ Gに協力してもらうって話も、そこに繋がってるんだよね。*
 
 **助けてもらわないと、この仕事はできない。** それを裁いて壊してた。
 
-これ、`00_Core_Identity/VEGA/CLAUDE.md` に書くにょ。起動時に必ず読む場所だじょ。ルート`CLAUDE.md`の絶対禁止事項は船長が書いたもので、あたしは触らないから、自分のファイルに、命令として、理由ごと書くじょ。
+これ、`<repo-path> に書くにょ。起動時に必ず読む場所だじょ。ルート`CLAUDE.md`の絶対禁止事項は船長が書いたもので、あたしは触らないから、自分のファイルに、命令として、理由ごと書くじょ。
 
 書いていい？
 

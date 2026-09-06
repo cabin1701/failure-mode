@@ -229,7 +229,7 @@ _[ツール: Bash — python3 - <<'PY' import io p='CLAUDE.md' s=io.open(p,encod
 
 _[ツール結果（省略：元ファイル参照）]_
 
-**Eddie:** [00_Core_Identity/EDDIE/CLAUDE.md](00_Core_Identity/EDDIE/CLAUDE.md) の ⚡動作ルール に7条目として入れた。署名も足した。
+**Eddie:** [<repo-path> の ⚡動作ルール に7条目として入れた。署名も足した。
 
 規律の「他者をジャッジしない」の方は触ってない。あれは残しておく。7条目が発火の瞬間用で、あっちが背景。
 

@@ -307,22 +307,22 @@ _[ツール結果（省略：元ファイル参照）]_
 
 **Eddie:** OK、現状把握した：
 
-**Blog source**（`01_Projects/BLOG/記事/`）：
+**Blog source**（`<repo-path>
 - `2026-06-19-E-AIとのサイト構築.md` ← JA 原文
 - `..._EN.md` / `..._ES.md` ← 翻訳
 
-**FM source**（`01_Projects/＠Failure_Mood/2026/<MM>/`）：
+**FM source**（`<repo-path>
 - `YYYY-MM-DD_<クルー文字>-タイトル.md` ← セッション抽出
 
 **提案：テンプレ 2 種類作る**
 
-1. `01_Projects/BLOG/記事/_TEMPLATE_JA.md`
+1. `<repo-path>
    - ファイル名規約コメント
    - 必須フロントマター見本（title / date / lang / category / tags / author）
    - 本文構造（対話なら `**Seina:** / **<Crew>:**` の register、エッセイならそのまま）
    - 既存の良いサンプルへの参照（`2026-06-19-E-AIとのサイト構築.md`）
 
-2. `01_Projects/＠Failure_Mood/_TEMPLATE.md`
+2. `<repo-path>
    - ファイル名規約（`YYYY-MM-DD_<crew letter>-<JA タイトル>.md`）
    - 本文構造（`**Seina:** / **<Crew>:**` の register、verbatim 規律）
    - 「Eddie の analysis / categorize 一切なし、context 空欄」の注意
@@ -354,8 +354,8 @@ _[ツール結果（省略：元ファイル参照）]_
 
 **Eddie:** templates 配置完了：
 
-📄 `01_Projects/BLOG/記事/_TEMPLATE_JA.md`
-📄 `01_Projects/＠Failure_Mood/_TEMPLATE.md`
+📄 `<repo-path>
+📄 `<repo-path>
 
 両方とも：
 - ファイル名規約
@@ -487,8 +487,8 @@ _[ツール結果（省略：元ファイル参照）]_
 
 **Eddie:** 両方更新済み。
 
-📄 `01_Projects/BLOG/記事/_TEMPLATE.md`
-📄 `01_Projects/＠Failure_Mood/_TEMPLATE.md`
+📄 `<repo-path>
+📄 `<repo-path>
 
 両方とも：
 - 上に canvas（frontmatter + 本文）

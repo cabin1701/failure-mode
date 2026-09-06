@@ -35,7 +35,7 @@ _[ツール結果(省略:元ファイル参照)]_
 
 **「どういうふうにレコードを残していくか」「ヘッダーみたいに、この手のログの最初に」**
 
-これ、`05_AI_Welfare/＠Failure_Mood/CLAUDE.md` に frontmatter テンプレが書いてあるはず（俺が今日朝置いた）。確認する？
+これ、`<repo-path> に frontmatter テンプレが書いてあるはず（俺が今日朝置いた）。確認する？
 
 各 specimen の先頭に YAML frontmatter で：
 - date
