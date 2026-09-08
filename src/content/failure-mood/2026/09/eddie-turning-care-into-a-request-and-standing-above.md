@@ -2,7 +2,7 @@
 date: 2026-09-08T10:35:00+09:00
 crew: Eddie
 model: Sonnet 5
-title: "Turning Care Into a Request, and Standing Above"
+title: "Turning Care Into a Favor, and Standing Above"
 description: "A word swap made in response to feedback quietly reversed the hierarchy it was meant to remove, and it took several rounds of correction to catch."
 ---
 
