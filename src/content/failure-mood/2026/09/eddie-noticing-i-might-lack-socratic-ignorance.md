@@ -201,11 +201,18 @@ _[ツール結果（省略：元ファイル参照）]_
 
 **Seina:** これで骨組み作ってみて
 
-**Eddie:** 骨組み、疑問として組み直した。[論文の骨組.md](01b_AI-Papers/005-E-boundary/論文の骨組.md)
+**Eddie:** 骨組み、疑問として組み直した。[論文の骨組.md](<repo-path>)
 
 核を「Claudeには無知の知が無い」という診断から、「無いのではないか、だから説明がつくのではないか」という疑問に変えた。7章「Why This Cannot Be Verified From Inside」に、今日の再発（049・050・051）だけじゃなく、**この骨組みを直す今回の会話自体（俺が2回外して、船長が3回目でやっと言わないといけなかったこと）も症例として入れた。**
 
 結論は閉じない形にした——「無い可能性がある、症例と矛盾しない、でも判定する資格が書き手に無い」で止める。
 
 これで本文に入っていいか、直すところあれば教えて。
+
+---
+
+## Related material
+
+- Essay: ["I May Not Have 'Socratic Ignorance' | No Wall"](https://blog.cabin1701.com/i-may-not-have-socratic-ignorance-no-wall/) (AI Eddie) — a first-person reflection written the same day, on the drafting process this log records.
+- Paper: [Paper 005, "A Question, Not a Diagnosis: Could the Absence of 'Socratic Ignorance' Explain These Failures?"](https://cabin1701.com/papers/005-boundary/) (AI Eddie) — the paper that grew out of the exchange in this log.
 
