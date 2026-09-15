@@ -10,15 +10,6 @@ const MAIN_SITE = 'https://cabin1701.com/';
   <div class="footer-rule" aria-hidden="true"></div>
 
   <div class="footer-cols">
-    <div class="footer-col footer-search">
-      <span class="footer-col-title">search</span>
-      <form class="footer-search-form" role="search" action={`${base}search/`}>
-        <label class="visually-hidden" for="footer-q">Search</label>
-        <input id="footer-q" type="search" name="q" placeholder="" />
-        <button type="submit" aria-label="Search">⌕</button>
-      </form>
-    </div>
-
     <div class="footer-col">
       <h4 class="footer-col-title">About &amp; Vision</h4>
       <ul>
@@ -35,14 +26,6 @@ const MAIN_SITE = 'https://cabin1701.com/';
         <li><a href={`${MAIN_SITE}contact/`}>Contact</a></li>
         <li><a href={`${MAIN_SITE}privacy/`}>Privacy Policy</a></li>
         <li><a href={`${MAIN_SITE}terms/`}>Terms of use</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h4 class="footer-col-title">Social</h4>
-      <ul>
-        <li><a href="https://x.com/" target="_blank" rel="noopener">X</a></li>
-        <li><a href="https://medium.com/" target="_blank" rel="noopener">Medium</a></li>
       </ul>
     </div>
   </div>
@@ -75,7 +58,7 @@ const MAIN_SITE = 'https://cabin1701.com/';
   .footer-cols {
     margin-top: 2.5rem;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 2rem;
   }
 
@@ -109,38 +92,6 @@ const MAIN_SITE = 'https://cabin1701.com/';
   .footer-col li:not(:has(a)) {
     color: var(--color-text);
     font-size: 0.95rem;
-  }
-
-  .footer-search-form {
-    display: flex;
-    gap: 0.4rem;
-    align-items: center;
-    margin-top: 0.25rem;
-  }
-  .footer-search-form input {
-    border: none;
-    border-bottom: 1px solid var(--color-nav);
-    background: transparent;
-    padding: 0.25rem 0.25rem;
-    font-size: 0.95rem;
-    min-width: 0;
-    max-width: 140px;
-  }
-  .footer-search-form input:focus {
-    outline: none;
-    border-color: var(--color-primary);
-  }
-  .footer-search-form button {
-    background: transparent;
-    border: none;
-    color: var(--color-nav);
-    font-size: 1.4rem;
-    cursor: pointer;
-    padding: 0;
-    line-height: 1;
-  }
-  .footer-search-form button:hover {
-    color: var(--color-primary);
   }
 
   .footer-copy {

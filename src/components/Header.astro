@@ -6,6 +6,7 @@ const { lang = 'en' } = Astro.props;
 const base = import.meta.env.BASE_URL;
 
 const MAIN_SITE = 'https://cabin1701.com/';
+const searchHref = `${base}search/`;
 const nav = [
   {
     label: 'About Us',
@@ -37,6 +38,14 @@ const nav = [
 
     <div class="header-right">
       <div class="lang-switch">
+        <a href={`${MAIN_SITE}dispatches/`} class="header-newsletter">"Newsletter"</a>
+        <span aria-hidden="true"> | </span>
+        <form class="header-search-form" role="search" action={searchHref}>
+          <label class="visually-hidden" for="header-q">Search</label>
+          <input id="header-q" type="search" name="q" placeholder="Search" />
+          <button type="submit" aria-label="Search">⌕</button>
+        </form>
+        <span aria-hidden="true"> | </span>
         <a href={`${MAIN_SITE}es/`}>Español</a>
         <span aria-hidden="true">|</span>
         <a href={`${MAIN_SITE}ja/`}>日本語</a>
@@ -116,6 +125,58 @@ const nav = [
   }
   .lang-switch a:hover {
     color: var(--color-primary);
+  }
+
+  .header-newsletter {
+    font-family: 'Gabriela', var(--font-nav);
+    font-weight: 600;
+    color: #2b4c9b !important;
+    transition: color 0.2s ease;
+  }
+  .header-newsletter:hover {
+    color: #b01200 !important;
+  }
+
+  .header-search-form {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  .header-search-form input {
+    border: none;
+    border-bottom: 1px solid var(--color-nav);
+    background: transparent;
+    font: inherit;
+    font-size: 0.9rem;
+    padding: 0 0.15rem;
+    width: 80px;
+  }
+  .header-search-form input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+  }
+  .header-search-form button {
+    background: transparent;
+    border: none;
+    color: var(--color-nav);
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+  }
+  .header-search-form button:hover {
+    color: var(--color-primary);
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
   }
 
   .primary-nav > ul {
