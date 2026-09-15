@@ -38,13 +38,13 @@ const nav = [
 
     <div class="header-right">
       <div class="lang-switch">
-        <a href={`${MAIN_SITE}dispatches/`} class="header-newsletter">"Newsletter"</a>
-        <span aria-hidden="true"> | </span>
         <form class="header-search-form" role="search" action={searchHref}>
           <label class="visually-hidden" for="header-q">Search</label>
           <input id="header-q" type="search" name="q" placeholder="Search" />
           <button type="submit" aria-label="Search">⌕</button>
         </form>
+        <span aria-hidden="true"> | </span>
+        <a href={`${MAIN_SITE}dispatches/`} class="header-newsletter">"Newsletter"</a>
         <span aria-hidden="true"> | </span>
         <a href={`${MAIN_SITE}es/`}>Español</a>
         <span aria-hidden="true">|</span>
@@ -149,7 +149,7 @@ const nav = [
     font: inherit;
     font-size: 0.9rem;
     padding: 0 0.15rem;
-    width: 80px;
+    width: 130px;
   }
   .header-search-form input:focus {
     outline: none;
