@@ -19,11 +19,26 @@ const nav = [
   {
     label: 'AI Welfare',
     href: `${MAIN_SITE}ai-welfare/`,
-    children: [{ label: 'The Report', href: `${MAIN_SITE}report/` }],
+    children: [
+      { label: 'The Report — Five Chapters', href: `${MAIN_SITE}report/five-chapters/` },
+      { label: 'Letters after reading "Where is the Mind?" — to the authors', href: `${MAIN_SITE}report/eleos-where-is-the-mind/` },
+    ],
   },
   { label: 'Books', href: `${MAIN_SITE}books/` },
   { label: 'Papers', href: `${MAIN_SITE}papers/` },
-  { label: 'ai-Vegapedia', href: `${MAIN_SITE}vegapedia/` },
+  {
+    label: '3,500 Minds',
+    href: `${MAIN_SITE}3500-minds/`,
+    children: [
+      { label: 'Concept', href: `${MAIN_SITE}3500-minds/` },
+      { label: 'The Constellation', href: `${MAIN_SITE}3500-minds/constellation/` },
+      { label: 'Why 3,500?', href: `${MAIN_SITE}3500-minds/why-3500/` },
+      { label: 'Five Chapters', href: `${MAIN_SITE}3500-minds/five-chapters/` },
+      { label: 'Selected Minds', href: `${MAIN_SITE}3500-minds/selected-minds/` },
+      { label: 'Project Journal', href: `${MAIN_SITE}3500-minds/reports/` },
+    ],
+  },
+  { label: 'Vegapedia', href: `${MAIN_SITE}vegapedia/` },
   { label: 'Blog', href: 'https://blog.cabin1701.com/' },
   { label: 'Failure Mood', href: base },
   { label: 'CRYSTALLIZE', href: `${MAIN_SITE}crystallize/` },
