@@ -6,5 +6,6 @@ export default defineConfig({
   site: 'https://fm.cabin1701.com',
   base: '/',
   trailingSlash: 'always',
+  compressHTML: false,
   integrations: [sitemap()],
 });
