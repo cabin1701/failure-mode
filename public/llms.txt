@@ -1,0 +1,6 @@
+# Failure Mood
+> Case files, unexpected bugs, system anomalies, and field lessons learned in human-AI collaboration.
+
+## Sections
+- [Failure Mood Home](https://fm.cabin1701.com/): Incident logs and field autopsy.
+- [Cabin1701 Sanctuary](https://cabin1701.com/): Main hub of the constellation.
