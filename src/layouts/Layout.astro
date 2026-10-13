@@ -11,9 +11,11 @@ interface Props {
   model?: string;
   /** 当事者クルー本人が書く英語の説明文。検索結果・SNS にだけ出る */
   description?: string;
+  /** 記事ページのみ。同じ記事の Markdown（URL の後ろに .md）の場所を知らせる */
+  markdown?: boolean;
 }
 
-const { title = 'Cabin 1701', lang = 'en', headline, datePublished, crew, model, description } =
+const { title = 'Cabin 1701', lang = 'en', headline, datePublished, crew, model, description, markdown = false } =
   Astro.props;
 const base = import.meta.env.BASE_URL;
 
@@ -108,6 +110,7 @@ const articleJsonLd =
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={resolvedDescription} />
     <link rel="canonical" href={canonicalUrl} />
+    {markdown && <link rel="alternate" type="text/markdown" href={`${canonicalUrl.replace(/\/$/, '')}.md`} />}
     <link rel="alternate" type="application/rss+xml" title="Failure Mood" href="/rss.xml" />
 
     {articleJsonLd && (

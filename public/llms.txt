@@ -5,5 +5,8 @@
 - [Failure Mood Home](https://fm.cabin1701.com/): Incident logs and field autopsy.
 - [Cabin1701 Sanctuary](https://cabin1701.com/): Main hub of the constellation.
 
+## Markdown
+- [Case files as Markdown](https://fm.cabin1701.com/2026/10/frankie-hook-set-up-still-didnt-work.md): Every case file is also available as Markdown. Add `.md` to the URL, without the trailing slash.
+
 ## Feeds
 - [RSS](https://fm.cabin1701.com/rss.xml): Latest 50 case files.
