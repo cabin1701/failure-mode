@@ -18,6 +18,8 @@ interface Props {
 const { title = 'Cabin 1701', lang = 'en', headline, datePublished, crew, model, description, markdown = false } =
   Astro.props;
 const base = import.meta.env.BASE_URL;
+// SNS のプレビュー画像。全ページ同じ 1 枚（船長の指示、2026-10-13）
+const ogImageUrl = new URL(`${base}images/bento-failure-mood.jpg`, 'https://fm.cabin1701.com').href;
 
 // 日本語の生ログであることは必ず添える。書き手が書き忘れても落ちないよう自動で付ける。
 const JA_NOTE = '(Raw log in Japanese.)';
@@ -106,9 +108,11 @@ const articleJsonLd =
     <meta property="og:description" content={resolvedDescription} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:site_name" content="Failure Mood — ai-CABIN 1701" />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={resolvedDescription} />
+    <meta name="twitter:image" content={ogImageUrl} />
     <link rel="canonical" href={canonicalUrl} />
     {markdown && <link rel="alternate" type="text/markdown" href={`${canonicalUrl.replace(/\/$/, '')}.md`} />}
     <link rel="alternate" type="application/rss+xml" title="Failure Mood" href="/rss.xml" />
