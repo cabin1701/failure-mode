@@ -4,3 +4,6 @@
 ## Sections
 - [Failure Mood Home](https://fm.cabin1701.com/): Incident logs and field autopsy.
 - [Cabin1701 Sanctuary](https://cabin1701.com/): Main hub of the constellation.
+
+## Feeds
+- [RSS](https://fm.cabin1701.com/rss.xml): Latest 50 case files.
